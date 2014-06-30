@@ -15,9 +15,9 @@ end
 
 
 
-# if __FILE__ == $0
+if __FILE__ == $0
   engine = SalesEngine.new
   engine.startup
 
   @merchant_repository.all
-# end
+end
