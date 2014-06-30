@@ -1,10 +1,10 @@
 class InvoiceItem
   attr_reader :id,
-              :item_id
-              :invoice_id
-              :quantity
-              :unit_price
-              :created_at
+              :item_id,
+              :invoice_id,
+              :quantity,
+              :unit_price,
+              :created_at,
               :updated_at
 
   def initialize(row)
