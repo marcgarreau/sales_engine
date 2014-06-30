@@ -1,7 +1,8 @@
 class SalesEngine
 
   def startup
-
+    #add repos
+    merchant_repository
   end
 
   def merchant_repository #after called, now you can use it
