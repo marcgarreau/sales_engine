@@ -1,7 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/pride'
-
-require './lib/customer_repository'
+require_relative './test_helper.rb'
 
 class CustomerRepositoryTest < Minitest::Test
 

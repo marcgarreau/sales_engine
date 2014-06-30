@@ -1,7 +1,4 @@
-gem 'minitest'
-require 'minitest/autorun'
-require 'minitest/pride'
-require_relative '../lib/invoice_repository.rb'
+require_relative './test_helper.rb'
 
 class InvoiceRepositoryTest < Minitest::Test
 

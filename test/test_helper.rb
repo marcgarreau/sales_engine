@@ -1,0 +1,10 @@
+gem 'minitest'
+require 'minitest/autorun'
+require 'minitest/pride'
+
+require_relative  '../lib/item_repository.rb'
+require_relative  '../lib/customer_repository.rb'
+require_relative  '../lib/invoice_item_repository.rb'
+require_relative  '../lib/invoice_repository.rb'
+require_relative  '../lib/merchant_repository.rb'
+require_relative  '../lib/transaction_repository.rb'
