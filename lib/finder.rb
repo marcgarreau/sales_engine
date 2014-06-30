@@ -7,49 +7,32 @@ module Finder
 
   # Customers
   # random
-  # find by last name
-  # find all by first name
-  # def find_by_last_name(name)
-  #   results = self.customers.select {|last_name| last_name == name}
-  #   return results
-  # end
+  # find by last name √
+  # find all by first name √
 
-  # Merchants
+  # Merchants #Corey
   # random
   # find by name
   # find all by name
 
-  # Item
+  # Item # Corey
   # random
   # find by unit price
   # find all by name
 
-  # Transactions
+  # Transactions # Corey
   # random
   # find by CC number
   # find all by result
 
-  # Invoice
+  # Invoice # Marc
   # random
   # find by status
   # find all by status
 
-  # Invoice item
+  # Invoice item # M
   # random
   # find item id
   # find all by quantity
-
-    # Merchant.find_by_last_name(name)
-    # def find_by(parameter, value)
-    #   @results = []
-    #   @results = self.select { |thing| thing.send(parameter) == value }
-    # end
-    #
-    # @attendees ||= []
-    # @results = @attendees.select { |attendee| attendee.send(attribute) == criterium }
-    #
-    # def find_all_by(parameter, value)
-    #
-    # end
 
 end

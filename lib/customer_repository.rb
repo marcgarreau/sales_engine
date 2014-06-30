@@ -11,6 +11,10 @@ class CustomerRepository
   end
 
   def find_by_last_name(name)
-    @results = @customers.select {|c| c.last_name == name}
+    @results = @customers.find {|customer| customer.last_name == name}
+  end
+
+  def find_all_by_first_name(name)
+    @results = @customers.find_all {|customer| customer.first_name == name}
   end
 end
