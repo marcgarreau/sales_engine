@@ -15,5 +15,4 @@ class MerchantRepositoryTest < Minitest::Test
     repo.build_merchants
     assert repo.merchants.count >= 10
   end
-
 end
