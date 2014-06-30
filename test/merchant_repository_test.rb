@@ -1,6 +1,5 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-
 require './lib/merchant_repository'
 
 class MerchantRepositoryTest < Minitest::Test
@@ -15,5 +14,4 @@ class MerchantRepositoryTest < Minitest::Test
     repo.build_merchants
     assert repo.merchants.count >= 10
   end
-
 end
