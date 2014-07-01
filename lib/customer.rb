@@ -14,7 +14,6 @@ class Customer
   end
 
   def invoices
-    #query invoice repo for find all by customer id
     results = InvoiceRepository.new.find_all_by_customer_id(self.id)
   end
 end

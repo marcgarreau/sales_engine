@@ -20,4 +20,10 @@ class SalesEngineTest < Minitest::Test
     invoice_customer = @engine.customer_repository.find_by_id 192
     assert_equal transaction.invoice.customer.first_name, invoice_customer.first_name
   end
+
+  def test_it_can_find_invoice_items_by_name
+    item = @engine.item_repository.find_by_name "Item Saepe Ipsum"
+    assert_equal 1, item.invoice_items.count
+    # item.merchant.name
+  end
 end

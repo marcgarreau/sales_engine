@@ -16,4 +16,8 @@ class Item
     @created_at   = row[:created_at]
     @updated_at   = row[:updated_at]
   end
+
+  def invoice_items
+    results = InvoiceItemRepository.new.find_all_by_item_id(self.id)
+  end
 end

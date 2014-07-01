@@ -27,4 +27,8 @@ class ItemRepository
     results = @items.find_all {|item| item.name == name}
   end
 
+  def find_by_name(name)
+    results = @items.find {|item| item.name == name}
+  end
+
 end
