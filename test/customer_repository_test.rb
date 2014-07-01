@@ -13,10 +13,12 @@ class CustomerRepositoryTest < Minitest::Test
   def test_it_can_find_by_last_name
     result = @repo.find_by_last_name("Toy")
     assert_equal "Mariah", result.first_name
+    #find method always returns one value (a repo instance)
   end
 
   def test_it_can_find_all_by_first_name
     results = @repo.find_all_by_first_name("Mariah")
     assert_equal 2, results.count
+    #find_by method returns an array
   end
 end

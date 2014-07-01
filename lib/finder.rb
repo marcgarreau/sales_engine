@@ -27,12 +27,12 @@ module Finder
 
   # Invoice # Marc
   # random
-  # find by status
-  # find all by status
+  # find by status √
+  # find all by status √
 
   # Invoice item # M
   # random
-  # find item id
-  # find all by quantity
+  # find item id √
+  # find all by quantity √
 
 end
