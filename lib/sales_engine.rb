@@ -6,15 +6,28 @@ require_relative 'invoice_item_repository'
 require_relative 'transaction_repository'
 
 class SalesEngine
+  attr_reader :customer_repository,
+              :invoice_item_repository,
+              :invoice_repository,
+              :item_repository,
+              :merchant_repository,
+              :transaction_repository
 
-  def startup
-    #add repos
-    merchant_repository
+  def initialize
+    startup
   end
 
-  def merchant_repository #after called, now you can use it
-    @merchant_repository = MerchantRepository.new
-    #Returns array of merchants
+  def startup
+    @customer_repository      = CustomerRepository.new
+    @invoice_item_repository  = InvoiceItemRepository.new
+    @invoice_repository       = InvoiceRepository.new
+    @item_repository          = ItemRepository.new
+    @merchant_repository      = MerchantRepository.new
+    @transaction_repository   = TransactionRepository.new
+  end
+
+  def invoices
+
   end
 end
 
@@ -23,5 +36,12 @@ if __FILE__ == $0
   engine = SalesEngine.new
   engine.startup
 
-  @merchant_repository.all
+  #CustomerRepo Relationships:
+  customer = engine.customer_repository.find_by_id 999
+  puts customer.inspect
+  customer.invoices.count # => 7
+  #
+  # customer.invoices.each do |invoice|
+  #   invoice.customer_id.should == 999
+  # end
 end
