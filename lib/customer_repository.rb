@@ -3,18 +3,19 @@ require_relative 'customer'
 
 class CustomerRepository
 
-  attr_reader :customers, :results
+  attr_reader :customers
 
   def initialize(file="./data/fixtures/fake_customers.csv")
+    @results = []
     @csv = CSV.open(file, headers: true, header_converters: :symbol)
     @customers = @csv.map {|row| Customer.new(row)}
   end
 
   def find_by_last_name(name)
-    @results = @customers.find {|customer| customer.last_name == name}
+    result = @customers.find {|customer| customer.last_name == name}
   end
 
   def find_all_by_first_name(name)
-    @results = @customers.find_all {|customer| customer.first_name == name}
+    results = @customers.find_all {|customer| customer.first_name == name}
   end
 end
