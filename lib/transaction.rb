@@ -16,4 +16,8 @@ class Transaction
     @created_at                  = row[:created_at]
     @updated_at                  = row[:updated_at]
   end
+
+  def invoice
+    results = InvoiceRepository.new.find_by_invoice_id(self.invoice_id)
+  end
 end

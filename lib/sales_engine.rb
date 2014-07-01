@@ -25,10 +25,6 @@ class SalesEngine
     @merchant_repository      = MerchantRepository.new
     @transaction_repository   = TransactionRepository.new
   end
-
-  def invoices
-    puts "hello"
-  end
 end
 
 #For testing the SalesEngine class:
@@ -38,10 +34,14 @@ if __FILE__ == $0
 
   #CustomerRepo Relationships:
   customer = engine.customer_repository.find_by_id 999
-  puts customer.inspect
-  puts customer.invoices.count # => 7
+  # puts customer.inspect
+  # puts customer.invoices.count # => 7
   #
   # customer.invoices.each do |invoice|
   #   invoice.customer_id.should == 999
   # end
+
+  transaction = engine.transaction_repository.find_by_id 1138
+  invoice_customer = engine.customer_repository.find_by_id 192
+  # assert_equal transaction.invoice.customer.first_name, invoice_customer.first_name #Chloe
 end

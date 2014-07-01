@@ -5,7 +5,7 @@ class CustomerRepository
 
   attr_reader :customers, :results
 
-  def initialize(file="./data/customers.csv")
+  def initialize(file="./data/fixtures/fake_customers.csv")
     @results = []
     @csv = CSV.open(file, headers: true, header_converters: :symbol)
     @customers = @csv.map {|row| Customer.new(row)}

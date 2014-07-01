@@ -14,4 +14,8 @@ class Invoice
     @created_at  = row[:created_at]
     @updated_at  = row[:updated_at]
   end
+
+  def customer
+    results = CustomerRepository.new.find_by_id(self.customer_id)
+  end
 end

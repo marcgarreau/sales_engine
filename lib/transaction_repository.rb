@@ -25,4 +25,8 @@ class TransactionRepository
   def find_all_by_result(result)
     collection = @transactions.find_all {|transaction| transaction.result == result}
   end
+
+  def find_by_id(customer_id)
+    results = @transactions.find {|transaction| transaction.id == customer_id.to_s}
+  end
 end

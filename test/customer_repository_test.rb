@@ -23,7 +23,7 @@ class CustomerRepositoryTest < Minitest::Test
   end
 
   def test_it_can_find_by_id
-    results = @repo.find_by_id("999")
-    assert_equal 
+    results = @repo.find_by_id(999)
+    assert_equal "999", results.id
   end
 end
