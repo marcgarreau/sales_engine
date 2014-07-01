@@ -21,4 +21,9 @@ class CustomerRepositoryTest < Minitest::Test
     assert_equal 2, results.count
     #find_by method returns an array
   end
+
+  def test_it_can_find_by_id
+    results = @repo.find_by_id("999")
+    assert_equal 
+  end
 end

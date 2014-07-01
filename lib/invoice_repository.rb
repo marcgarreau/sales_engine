@@ -5,7 +5,7 @@ class InvoiceRepository
 
   attr_reader :invoices, :results
 
-  def initialize(file="./data/fixtures/fake_invoices.csv")
+  def initialize(file="./data/invoices.csv")
     @csv = CSV.open(file, headers: true, header_converters: :symbol)
     @invoices = @csv.map {|row| Invoice.new(row)}
   end
@@ -24,5 +24,9 @@ class InvoiceRepository
 
   def find_all_by_status(status)
     @results = @invoices.find_all {|invoice| invoice.status == status}
+  end
+
+  def find_all_by_customer_id(id)
+    @results = @invoices.find_all {|invoice| invoice.customer_id == id}
   end
 end

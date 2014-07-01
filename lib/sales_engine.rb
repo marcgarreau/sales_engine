@@ -27,7 +27,7 @@ class SalesEngine
   end
 
   def invoices
-
+    puts "hello"
   end
 end
 
@@ -39,7 +39,7 @@ if __FILE__ == $0
   #CustomerRepo Relationships:
   customer = engine.customer_repository.find_by_id 999
   puts customer.inspect
-  customer.invoices.count # => 7
+  puts customer.invoices.count # => 7
   #
   # customer.invoices.each do |invoice|
   #   invoice.customer_id.should == 999
