@@ -19,6 +19,13 @@ class CustomerRepository
     @customers.shuffle.first
   end
 
+  # # RELATIONSHIPS
+  #   # item : find_by_id, invoices
+  #
+  # def find_by_id(customer_id)
+  #   @invoices = ????.find_all {|invoice| invoice.customer_id == customer_id }
+  # end
+
   def find_by_last_name(name)
     results = @customers.find {|customer| customer.last_name == name}
   end
