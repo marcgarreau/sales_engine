@@ -15,4 +15,12 @@ class InvoiceRepository
       @invoices << Invoice.new(row)
     end
   end
+
+  def find_by_status(status)
+    @results = @invoices.find {|invoice| invoice.status == status}
+  end
+
+  def find_all_by_status(status)
+    @results = @invoices.find_all {|invoice| invoice.status == status}
+  end
 end

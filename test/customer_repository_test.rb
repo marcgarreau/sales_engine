@@ -4,12 +4,11 @@ class CustomerRepositoryTest < Minitest::Test
 
   def test_it_initializes_with_customers
     repo = CustomerRepository.new
-    assert repo.customers.count >= 10
+    assert repo.results.count >= 10
   end
 
   def test_it_can_find_by_last_name
     c = CustomerRepository.new
-    # c.build_customers
     c.find_by_last_name("Toy")
     assert_equal 1, c.results.count
   end
