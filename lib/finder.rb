@@ -12,18 +12,18 @@ module Finder
 
   # Merchants #Corey
   # random
-  # find by name
-  # find all by name
+  # find by name √
+  # find all by name √
 
   # Item # Corey
   # random
-  # find by unit price
-  # find all by name
+  # find by unit price √
+  # find all by name √
 
   # Transactions # Corey
   # random
-  # find by CC number
-  # find all by result
+  # find by CC number √
+  # find all by result √
 
   # Invoice # Marc
   # random

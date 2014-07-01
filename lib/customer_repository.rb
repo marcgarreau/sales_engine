@@ -3,7 +3,7 @@ require_relative 'customer'
 
 class CustomerRepository
 
-  attr_reader :customers
+  attr_reader :customers, :results
 
   def initialize(file="./data/fixtures/fake_customers.csv")
     @results = []
@@ -12,7 +12,7 @@ class CustomerRepository
   end
 
   def find_by_last_name(name)
-    result = @customers.find {|customer| customer.last_name == name}
+    results = @customers.find {|customer| customer.last_name == name}
   end
 
   def find_all_by_first_name(name)
