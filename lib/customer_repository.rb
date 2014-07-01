@@ -11,6 +11,14 @@ class CustomerRepository
     @customers = @csv.map {|row| Customer.new(row)}
   end
 
+  def all
+    @customers
+  end
+
+  def random
+    @customers.shuffle.first
+  end
+
   def find_by_last_name(name)
     results = @customers.find {|customer| customer.last_name == name}
   end

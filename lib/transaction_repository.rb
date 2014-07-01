@@ -10,6 +10,14 @@ class TransactionRepository
     @transactions = @csv.map {|row| Transaction.new(row)}
   end
 
+  def all
+    @transactions
+  end
+
+  def random
+    @transactions.shuffle.first
+  end
+
   def find_by_credit_card_number(credit_card_number)
     collection = @transactions.find {|transaction| transaction.credit_card_number == credit_card_number}
   end

@@ -10,6 +10,14 @@ class InvoiceRepository
     @invoices = @csv.map {|row| Invoice.new(row)}
   end
 
+  def all
+    @invoices
+  end
+
+  def random
+    @invoices.shuffle.first
+  end
+
   def find_by_status(status)
     @results = @invoices.find {|invoice| invoice.status == status}
   end

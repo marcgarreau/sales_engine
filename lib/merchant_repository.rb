@@ -10,6 +10,14 @@ class MerchantRepository
     @merchants = @csv.map {|row| Merchant.new(row)}
   end
 
+  def all
+    @merchants
+  end
+
+  def random
+    @merchants.shuffle.first
+  end
+
   def find_by_name(name)
     results = @merchants.find {|merchant| merchant.name == name}
   end

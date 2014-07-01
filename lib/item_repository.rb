@@ -11,6 +11,14 @@ class ItemRepository
     @items = @csv.map {|row| Item.new(row)}
   end
 
+  def all
+    @items
+  end
+
+  def random
+    @items.shuffle.first
+  end
+
   def find_by_unit_price(unit_price)
     results = @items.find {|item| item.unit_price == unit_price}
   end

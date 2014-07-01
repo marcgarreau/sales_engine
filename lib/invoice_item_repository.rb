@@ -9,6 +9,14 @@ class InvoiceItemRepository
     @invoice_items = @csv.map {|row| InvoiceItem.new(row)}
   end
 
+  def all
+    @invoice_items
+  end
+
+  def random
+    @invoice_items.shuffle.first
+  end
+
   def find_by_item_id(id)
     result = @invoice_items.find {|invoice_item| invoice_item.item_id == id}
   end
