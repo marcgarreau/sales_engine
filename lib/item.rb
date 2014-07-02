@@ -5,9 +5,10 @@ class Item
               :unit_price,
               :merchant_id,
               :created_at,
-              :updated_at
+              :updated_at,
+              :repository
 
-  def initialize(row)
+  def initialize(row, repository=nil)
     @id           = row[:id]
     @name         = row[:name]
     @description  = row[:description]
@@ -15,10 +16,11 @@ class Item
     @merchant_id  = row[:merchant_id]
     @created_at   = row[:created_at]
     @updated_at   = row[:updated_at]
+    @repository   = repository
   end
 
   def invoice_items
-    results = InvoiceItemRepository.new.find_all_by_item_id(self.id)
+    results = repository.engine.invoice_item_repository.find_all_by_item_id(self.id)
   end
 
   def merchant
