@@ -36,4 +36,9 @@ class SalesEngineTest < Minitest::Test
     assert invoice_item.item.name == "Item Cupiditate Magni"
   end
 
+  def test_something
+    invoice_item = @engine.invoice_item_repository.find_by_id 16934
+    assert invoice_item.invoice
+  end
+
 end

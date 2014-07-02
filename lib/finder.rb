@@ -28,11 +28,11 @@ module InvoiceItemFinder
   end
 
   def random
-    @invoice_items.shuffle.first
+    @invoice_items.sample
   end
 
   def find_by_item_id(id)
-    result = @invoice_items.find {|invoice_item| invoice_item.item_id == id}
+    result = @invoice_items.find {|invoice_item| invoice_item.item_id == id.to_s}
   end
 
   def find_all_by_quantity(quant)
@@ -40,11 +40,11 @@ module InvoiceItemFinder
   end
 
   def find_all_by_item_id(id)
-    results = @invoice_items.find_all {|invoice_item| invoice_item.item_id == id}
+    results = @invoice_items.find_all {|invoice_item| invoice_item.item_id == id.to_s}
   end
 
   def find_by_id(id)
-    results = @invoice_items.find {|invoice_item|invoice_item.id == id}
+    results = @invoice_items.find {|invoice_item| invoice_item.id == id.to_s}
   end
 end
 
@@ -66,16 +66,12 @@ module InvoiceFinder
   end
 
   def find_all_by_customer_id(id)
-    results = @invoices.find_all {|invoice| invoice.customer_id == id}
+    results = @invoices.find_all {|invoice| invoice.customer_id == id.to_s}
   end
 
   def find_by_id(invoice_id)
     results = @invoices.find {|invoice| invoice.id == invoice_id.to_s}
   end
-
-  # def find_by_invoice_id(id)
-  #   results = @invoices.find {|invoice| invoice.merchant_id == id}
-  # end
 end
 
 module ItemFinder
@@ -98,6 +94,10 @@ module ItemFinder
   def find_by_name(name)
     results = @items.find {|item| item.name == name}
   end
+
+  def find_by_id(id)
+    results = @items.find {|item| item.id == id.to_s}
+  end
 end
 
 module MerchantFinder
@@ -118,7 +118,7 @@ module MerchantFinder
   end
 
   def find_by_id(id)
-    results = @merchants.find {|merchant| merchant.id == id}
+    results = @merchants.find {|merchant| merchant.id == id.to_s}
   end
 end
 

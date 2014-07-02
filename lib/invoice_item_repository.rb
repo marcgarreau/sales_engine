@@ -4,7 +4,8 @@ require_relative 'finder'
 
 class InvoiceItemRepository
   include InvoiceItemFinder
-  attr_reader :invoice_items, :engine
+  attr_reader :invoice_items,
+              :engine
 
   def initialize(engine, file="./data/fixtures/fake_invoice_items.csv")
     @engine = engine
