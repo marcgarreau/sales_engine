@@ -36,9 +36,24 @@ class SalesEngineTest < Minitest::Test
     assert invoice_item.item.name == "Item Cupiditate Magni"
   end
 
-  def test_something
+  def test_invoice_item_has_an_invoice
     invoice_item = @engine.invoice_item_repository.find_by_id 16934
     assert invoice_item.invoice
   end
 
+  def test_invoice_has_many_invoice_items
+    invoice = @engine.invoice_repository.find_by_id 1
+    assert_equal %w(1 2 3 4 5 6 7 8), invoice.invoice_items.map(&:id)
+  end
+
+  def test_invoice_has_many_items
+    invoice = @engine.invoice_repository.find_by_id 1
+    assert_equal %w(2 3 4 5 6 7 8 9), invoice.items.map(&:id)
+  end
+
+  def test_it_finds_items_by_merchant
+    merchant = @engine.merchant_repository.find_by_name "Kirlin, Jakubowski and Smitham"
+    items = merchant.items
+    assert_equal %w(2 3 4 5 6 7 8 9), items.map(&:id)
+  end
 end

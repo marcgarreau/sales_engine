@@ -12,7 +12,7 @@ class InvoiceRepositoryTest < Minitest::Test
 
   def test_it_can_find_by_status
     result = @repo.find_by_status("shipped")
-    assert_equal "26", result.merchant_id
+    assert_equal "76", result.merchant_id
   end
 
   def test_it_can_find_all_by_status

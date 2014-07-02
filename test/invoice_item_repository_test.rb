@@ -11,7 +11,7 @@ class InvoiceItemRepositoryTest < Minitest::Test
   end
 
   def test_it_can_find_by_item_id
-    result = @repo.find_by_item_id("539")
+    result = @repo.find_by_item_id("2")
     assert_equal "13635", result.unit_price
   end
 

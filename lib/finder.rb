@@ -46,6 +46,12 @@ module InvoiceItemFinder
   def find_by_id(id)
     results = @invoice_items.find {|invoice_item| invoice_item.id == id.to_s}
   end
+
+  def find_all_by_invoice_id(invoice_id)
+    results = @invoice_items.find_all { |invoice_item|
+      invoice_item.invoice_id == invoice_id.to_s
+    }
+  end
 end
 
 module InvoiceFinder
@@ -72,6 +78,10 @@ module InvoiceFinder
   def find_by_id(invoice_id)
     results = @invoices.find {|invoice| invoice.id == invoice_id.to_s}
   end
+
+  def find_by_merchant_id(merchant_id)
+    results = @invoices.find {|invoice| invoice.merchant_id == merchant_id.to_s}
+  end
 end
 
 module ItemFinder
@@ -97,6 +107,10 @@ module ItemFinder
 
   def find_by_id(id)
     results = @items.find {|item| item.id == id.to_s}
+  end
+
+  def find_all_by_id(id)
+    results = @items.find_all {|item| item.id == id.to_s}
   end
 end
 

@@ -16,11 +16,19 @@ class Invoice
     @repository  = repository
   end
 
-# def invoice_items
-#   results = repository.engine.invoice_item_repository.find_all_by_item_id(self.id)
-# end
+  def invoice_items
+    repository.engine.invoice_item_repository.find_all_by_invoice_id(id)
+  end
+
+  def items
+    invoice_items.map(&:item)
+  end
 
   def customer
-    results = @repository.engine.customer_repository.find_by_id(customer_id)
+    results = repository.engine.customer_repository.find_by_id(customer_id)
   end
+
+  protected
+
+  attr_reader :repository
 end
