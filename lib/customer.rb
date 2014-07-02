@@ -16,6 +16,5 @@ class Customer
 
   def invoices
     results = @repository.engine.invoice_repository.find_all_by_customer_id(id)
-    # results = InvoiceRepository.new.find_all_by_customer_id(id)
   end
 end
