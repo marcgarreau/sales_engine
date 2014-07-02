@@ -39,12 +39,12 @@ module InvoiceItemFinder
     results = @invoice_items.find_all {|invoice_item| invoice_item.quantity == quant}
   end
 
-    # def find_by_name(name)
-    #   results = @invoice_items.find {|invoice_item| invoice_item.item_id == name}
-    # end
-
   def find_all_by_item_id(id)
     results = @invoice_items.find_all {|invoice_item| invoice_item.item_id == id}
+  end
+
+  def find_by_id(id)
+    results = @invoice_items.find {|invoice_item|invoice_item.id == id}
   end
 end
 
@@ -65,7 +65,6 @@ module InvoiceFinder
     results = @invoices.find_all {|invoice| invoice.status == status}
   end
 
-    # refactor per demeter???????
   def find_all_by_customer_id(id)
     results = @invoices.find_all {|invoice| invoice.customer_id == id}
   end

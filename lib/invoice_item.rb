@@ -17,4 +17,8 @@ class InvoiceItem
     @updated_at = row[:updated_at]
     @repository = repository
   end
+
+  def item
+    
+  end
 end

@@ -31,4 +31,9 @@ class SalesEngineTest < Minitest::Test
     assert item.merchant.name == "Kilback Inc"
   end
 
+  def test_it_can_find_an_invoice
+    invoice_item = @engine.invoice_item_repository.find_by_id 16934
+    assert invoice_item.item.name == "Item Cupiditate Magni"
+  end
+
 end

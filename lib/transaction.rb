@@ -20,6 +20,5 @@ class Transaction
 
   def invoice
     results = @repository.engine.invoice_repository.find_by_id(invoice_id)
-    # results = InvoiceRepository.new.find_by_id(self.invoice_id)
   end
 end
