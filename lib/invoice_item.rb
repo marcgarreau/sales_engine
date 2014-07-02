@@ -21,4 +21,8 @@ class InvoiceItem
   def item
     result = @repository.engine.item_repository.find_by_id(item_id)
   end
+
+  def invoice
+    result = @repository.engine.invoice_repository.find_by_id(invoice_id)
+  end
 end
