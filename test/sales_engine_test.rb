@@ -24,6 +24,8 @@ class SalesEngineTest < Minitest::Test
   def test_it_can_find_invoice_items_by_name
     item = @engine.item_repository.find_by_name "Item Saepe Ipsum"
     assert_equal 1, item.invoice_items.count
-    # item.merchant.name
+
+    assert item.merchant.name == "Kilback Inc"
   end
+
 end

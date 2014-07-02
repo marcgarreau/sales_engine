@@ -33,4 +33,8 @@ class InvoiceRepository
   def find_by_invoice_id(invoice_id)
     results = @invoices.find {|invoice| invoice.id == invoice_id.to_s}
   end
+
+  # def find_by_invoice_id(id)
+  #   results = @invoices.find {|invoice| invoice.merchant_id == id}
+  # end
 end

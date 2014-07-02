@@ -25,4 +25,8 @@ class MerchantRepository
   def find_all_by_name(name)
     results = @merchants.find_all {|merchant| merchant.name == name}
   end
+
+  def find_by_id(id)
+    results = @merchants.find {|merchant| merchant.id == id}
+  end
 end
