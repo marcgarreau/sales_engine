@@ -7,7 +7,7 @@ class InvoiceItem
               :created_at,
               :updated_at
 
-  def initialize(row)
+  def initialize(row, repository=nil)
     @id         = row[:id]
     @item_id    = row[:item_id]
     @invoice_id = row[:invoice_id]
@@ -15,5 +15,6 @@ class InvoiceItem
     @unit_price = row[:unit_price]
     @created_at = row[:created_at]
     @updated_at = row[:updated_at]
+    @repository = repository
   end
 end

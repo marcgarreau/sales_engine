@@ -123,6 +123,28 @@ module MerchantFinder
   end
 end
 
+module TransactionFinder
+  def all
+    @transactions
+  end
+
+  def random
+    @transactions.shuffle.first
+  end
+
+  def find_by_credit_card_number(credit_card_number)
+    collection = @transactions.find {|transaction| transaction.credit_card_number == credit_card_number}
+  end
+
+  def find_all_by_result(result)
+    collection = @transactions.find_all {|transaction| transaction.result == result}
+  end
+
+  def find_by_id(customer_id)
+    results = @transactions.find {|transaction| transaction.id == customer_id.to_s}
+  end
+end
+
 # ????????????????
 module FindAll
   def all

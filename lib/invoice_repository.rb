@@ -4,10 +4,13 @@ require_relative 'finder'
 
 class InvoiceRepository
   include InvoiceFinder
-  attr_reader :invoices, :results
+  attr_reader :invoices,
+              :results,
+              :engine
 
-  def initialize(file="./data/fixtures/fake_invoices.csv")
+  def initialize(engine, file="./data/fixtures/fake_invoices.csv")
+    @engine = engine
     @csv = CSV.open(file, headers: true, header_converters: :symbol)
-    @invoices = @csv.map {|row| Invoice.new(row)}  # (row, self) --> refactor finders
+    @invoices = @csv.map {|row| Invoice.new(row, self)}
   end
 end

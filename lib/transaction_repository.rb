@@ -1,32 +1,17 @@
 require 'csv'
 require_relative 'transaction'
+require_relative 'finder'
 
 class TransactionRepository
-  attr_reader :transactions, :results
+  include TransactionFinder
+  attr_reader :transactions,
+              :results,
+              :engine
 
-  def initialize(file="./data/fixtures/fake_transactions.csv")
+  def initialize(engine, file="./data/fixtures/fake_transactions.csv")
     @collection = []
+    @engine = engine
     @csv = CSV.open(file, headers: true, header_converters: :symbol)
-    @transactions = @csv.map {|row| Transaction.new(row)}
-  end
-
-  def all
-    @transactions
-  end
-
-  def random
-    @transactions.shuffle.first
-  end
-
-  def find_by_credit_card_number(credit_card_number)
-    collection = @transactions.find {|transaction| transaction.credit_card_number == credit_card_number}
-  end
-
-  def find_all_by_result(result)
-    collection = @transactions.find_all {|transaction| transaction.result == result}
-  end
-
-  def find_by_id(customer_id)
-    results = @transactions.find {|transaction| transaction.id == customer_id.to_s}
+    @transactions = @csv.map {|row| Transaction.new(row, self)}
   end
 end

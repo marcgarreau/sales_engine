@@ -20,12 +20,15 @@ class Item
   end
 
   def invoice_items
-    results = repository.engine.invoice_item_repository.find_all_by_item_id(self.id)
+    results = repository.engine.invoice_item_repository.find_all_by_item_id(id)
   end
 
   def merchant
-    invoice_item = InvoiceItemRepository.new.find_by_item_id(self.id) #449 item_id passed in
-    invoice = InvoiceRepository.new.find_by_id(invoice_item.invoice_id) #4458 invoice item id passed in
-    merchant = MerchantRepository.new.find_by_id(invoice.merchant_id) #23 merch_id passed in
+    # invoice_item = InvoiceItemRepository.new.find_by_item_id(self.id) #449 item_id passed in
+    invoice_item = repository.engine.invoice_item_repository.find_by_item_id(id)
+    # invoice = InvoiceRepository.new.find_by_id(invoice_item.invoice_id) #4458 invoice item id passed in
+    invoice = repository.engine.invoice_repository.find_by_id(invoice_item.invoice_id)
+    # merchant = MerchantRepository.new.find_by_id(invoice.merchant_id) #23 merch_id passed in
+    merchant = repository.engine.merchant_repository.find_by_id(invoice.merchant_id)
   end
 end
