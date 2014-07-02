@@ -30,7 +30,7 @@ class InvoiceRepository
     results = @invoices.find_all {|invoice| invoice.customer_id == id}
   end
 
-  def find_by_invoice_id(invoice_id)
+  def find_by_id(invoice_id)
     results = @invoices.find {|invoice| invoice.id == invoice_id.to_s}
   end
 

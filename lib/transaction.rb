@@ -18,6 +18,6 @@ class Transaction
   end
 
   def invoice
-    results = InvoiceRepository.new.find_by_invoice_id(self.invoice_id)
+    results = InvoiceRepository.new.find_by_id(self.invoice_id)
   end
 end
