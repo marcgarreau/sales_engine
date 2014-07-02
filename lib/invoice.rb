@@ -19,7 +19,8 @@ class Invoice
 # def invoice_items
 #   results = repository.engine.invoice_item_repository.find_all_by_item_id(self.id)
 # end
+
   def customer
-    results = @repository.engine.invoice_repository.find_by_id(id)
+    results = @repository.engine.customer_repository.find_by_id(customer_id)
   end
 end

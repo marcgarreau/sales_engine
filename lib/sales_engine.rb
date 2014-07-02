@@ -4,6 +4,7 @@ require_relative 'item_repository'
 require_relative 'invoice_repository'
 require_relative 'invoice_item_repository'
 require_relative 'transaction_repository'
+require 'pry'
 
 class SalesEngine
   attr_reader :customer_repository,
@@ -29,8 +30,13 @@ end
 
 #For testing the SalesEngine class:
 if __FILE__ == $0
-  # @engine = SalesEngine.new
-  # @engine.startup
+  @engine = SalesEngine.new
+  @engine.startup
+  binding.pry
+  transaction = @engine.transaction_repository.find_by_id 1138
+  invoice_customer = @engine.customer_repository.find_by_id 192
+  assert_equal transaction.invoice.customer.first_name, invoice_customer.first_name
+
 
   # item = @engine.item_repository.find_by_name "Item Saepe Ipsum"
   #
