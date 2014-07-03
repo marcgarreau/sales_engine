@@ -32,10 +32,10 @@ class MerchantTest<Minitest::Test
   end
 
   def test_it_knows_when_it_was_created
-    assert merchant.created_at == "2012-03-27 14:53:59 UTC"
+    assert merchant.created_at == "2012-03-27"
   end
 
   def test_it_knows_when_it_was_updated
-    assert merchant.updated_at == "2012-03-27 14:53:59 UTC"
+    assert merchant.updated_at == "2012-03-27"
   end
 end

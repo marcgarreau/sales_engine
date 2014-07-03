@@ -1,4 +1,5 @@
 require 'csv'
+require 'date'
 require_relative 'merchant'
 require_relative 'finder'
 

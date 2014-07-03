@@ -21,4 +21,16 @@ class ItemRepositoryTest < Minitest::Test
     assert_equal 1, results.count
     #find_by method returns an array
   end
+
+  def test_it_usually_returns_different_random_things
+    item_one = @repo.random
+    item_two = @repo.random
+    10.times do
+      break if item_one.id == item_two.id
+      item_two = @repo.random
+      refute_equal item_one.to_s, item_two.to_s, "Broke due to random outcome. Run again."
+    end
+  end
+
+
 end

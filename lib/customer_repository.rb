@@ -1,4 +1,5 @@
 require 'csv'
+require 'date'
 require_relative 'customer'
 require './lib/finder.rb'
 

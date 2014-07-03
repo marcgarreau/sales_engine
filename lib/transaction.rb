@@ -1,3 +1,5 @@
+require 'Date'
+
 class Transaction
   attr_reader :id,
               :invoice_id,
@@ -13,8 +15,8 @@ class Transaction
     @credit_card_number          = row[:credit_card_number]
     @credit_card_expiration_date = row[:credit_card_expiration_date]
     @result                      = row[:result]
-    @created_at                  = row[:created_at]
-    @updated_at                  = row[:updated_at]
+    @created_at                  = Date.parse(row[:updated_at]).to_s
+    @updated_at                  = Date.parse(row[:created_at]).to_s
     @repository                  = repository
   end
 

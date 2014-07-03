@@ -50,10 +50,10 @@ class ItemTest<Minitest::Test
   end
 
   def test_it_knows_when_it_was_created
-    assert item.created_at == "2012-03-27 14:53:59 UTC"
+    assert_equal"2012-03-27", item.created_at
   end
 
   def test_it_knows_when_it_was_updated
-    assert item.updated_at == "2012-03-27 14:53:59 UTC"
+    assert item.updated_at == "2012-03-27"
   end
 end

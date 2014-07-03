@@ -1,10 +1,10 @@
 module Finder
   def all
-    self
+    self.items
   end
 
   def random
-    self.sample
+    self.items.shuffle.first
   end
 
   def self.included(base)

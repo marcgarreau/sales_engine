@@ -12,8 +12,8 @@ class CustomerTest<Minitest::Test
     { :id => "3",
       :first_name => "Mariah",
       :last_name => "Toy",
-      :created_at => "2012-03-27 14:53:59 UTC",
-      :updated_at => "2012-03-27 14:53:59 UTC"
+      :created_at => "2012-03-27",
+      :updated_at => "2012-03-27"
     }
   end
 
@@ -38,10 +38,10 @@ class CustomerTest<Minitest::Test
   end
 
   def test_it_knows_when_it_was_created
-    assert customer.created_at == "2012-03-27 14:53:59 UTC"
+    assert customer.created_at == "2012-03-27"
   end
 
   def test_it_knows_when_it_was_updated
-    assert customer.updated_at == "2012-03-27 14:53:59 UTC"
+    assert customer.updated_at == "2012-03-27"
   end
 end

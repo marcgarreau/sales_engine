@@ -1,4 +1,6 @@
 require 'csv'
+require 'bigdecimal'
+require 'date'
 require_relative 'invoice_item'
 require_relative 'finder'
 
