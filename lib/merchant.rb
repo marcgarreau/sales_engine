@@ -13,11 +13,11 @@ class Merchant
   end
 
   def items
-    invoice.items
+    invoices.map(&:items)
   end
 
-  def invoice
-    @repository.engine.invoice_repository.find_by_merchant_id(id)
+  def invoices
+    @repository.engine.invoice_repository.find_all_by_merchant_id(id)
   end
 
 end

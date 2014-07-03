@@ -16,8 +16,5 @@ class InvoiceRepository
     @invoices = @csv.map {|row| Invoice.new(row, self)}
   end
 
-  define_finders :id,
-                 :customer_id,
-                 :merchant_id,
-                 :status
+  define_finders 
 end
