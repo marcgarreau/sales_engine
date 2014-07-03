@@ -3,10 +3,12 @@ require_relative 'merchant'
 require_relative 'finder'
 
 class MerchantRepository
-  include MerchantFinder
-  attr_reader :merchants,
-              :results,
-              :engine
+  include Finder
+  attr_reader  :merchants,
+               :results,
+               :engine
+  alias_method :items,
+               :merchants
 
   def initialize(engine, file="./data/fixtures/fake_merchants.csv")
     @results = []
@@ -14,4 +16,7 @@ class MerchantRepository
     @csv = CSV.open(file, headers: true, header_converters: :symbol)
     @merchants = @csv.map {|row| Merchant.new(row, self)}
   end
+
+  define_finders :id,
+                 :name
 end
