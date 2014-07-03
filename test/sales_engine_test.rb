@@ -53,7 +53,16 @@ class SalesEngineTest < Minitest::Test
 
   def test_it_finds_items_by_merchant
     merchant = @engine.merchant_repository.find_by_name "Kirlin, Jakubowski and Smitham"
-    items = merchant.items
-    assert_equal %w(2 3 4 5 6 7 8 9), items.map(&:id)
+    assert_equal %w(1880), merchant.items.map(&:id)
+  end
+
+  def test_it_can_find_invoices_by_merchant
+    merchant = @engine.merchant_repository.find_by_name "Kirlin, Jakubowski and Smitham"
+    assert_equal %w(1 6 846), merchant.invoices.map(&:id)
+  end
+
+  def test_something_new
+    invoice = engine.invoice_repository.find_by_id 1002
+    invoice.transactions.should have(1).transaction
   end
 end
