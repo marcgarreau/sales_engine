@@ -56,13 +56,57 @@ class SalesEngineTest < Minitest::Test
     assert_equal %w(1880), merchant.items.map(&:id)
   end
 
+  def test_it_has_the_right_number_of_items
+    merchant = @engine.merchant_repository.find_by_name "Kirlin, Jakubowski and Smitham"
+    assert_equal 1, merchant.items.count
+  end
+
   def test_it_can_find_invoices_by_merchant
     merchant = @engine.merchant_repository.find_by_name "Kirlin, Jakubowski and Smitham"
     assert_equal %w(1 6 846), merchant.invoices.map(&:id)
   end
 
-  def test_something_new
-    invoice = engine.invoice_repository.find_by_id 1002
-    invoice.transactions.should have(1).transaction
+  def test_it_can_has_the_right_number_of_invoices
+    merchant = @engine.merchant_repository.find_by_name "Kirlin, Jakubowski and Smitham"
+    assert_equal 3, merchant.invoices.count
+  end
+
+  def test_it_has_the_right_number_of_transactions
+    invoice = @engine.invoice_repository.find_by_id 1001
+    assert_equal 1, invoice.transactions.count
+  end
+
+  def test_it_has_the_right_number_of_items
+    invoice = @engine.invoice_repository.find_by_id 1001
+    assert_equal 2, invoice.items.count
+  end
+
+  def test_it_can_find_an_item_with_a_specific_name
+    invoice = @engine.invoice_repository.find_by_id 1001
+    item = invoice.items.find {|i| i.name == 'Item Accusamus Officia'}
+    assert item
+  end
+
+  def test_it_can_find_customers_by_name
+    invoice = @engine.invoice_repository.find_by_id 1001
+    assert_equal "Eric", invoice.customer.first_name
+    assert_equal "Bergnaum", invoice.customer.last_name
+  end
+
+  def test_it_has_the_right_number_of_invoice_items
+    invoice = @engine.invoice_repository.find_by_id 1001
+    assert_equal 2, invoice.invoice_items.count
+  end
+
+  def test_it_can_find_an_invoice_item_by_name
+    invoice = @engine.invoice_repository.find_by_id 1001
+    item = invoice.invoice_items.find {|ii| ii.item.name == 'Item Accusamus Officia' }
+    assert item
+  end
+
+  def test_it_can_merchant_by_invoice
+    invoice = @engine.invoice_repository.find_by_id 1001
+    merchant = invoice.merchant 
+    assert_equal "Kilback Inc", merchant.name
   end
 end

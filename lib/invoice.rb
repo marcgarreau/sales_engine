@@ -21,11 +21,19 @@ class Invoice
   end
 
   def items
-    invoice_items.map(&:item) 
+    invoice_items.map(&:item)
   end
 
   def customer
-    results = repository.engine.customer_repository.find_by_id(customer_id)
+    repository.engine.customer_repository.find_by_id(customer_id)
+  end
+
+  def transactions
+    repository.engine.transaction_repository.find_all_by_invoice_id(id)
+  end
+
+  def merchant
+    repository.engine.merchant_repository.find_by_id(merchant_id)
   end
 
   protected
