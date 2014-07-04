@@ -42,7 +42,7 @@ class ItemTest<Minitest::Test
   end
 
   def test_it_knows_its_price
-    assert item.unit_price == "75107"
+    assert_equal BigDecimal.new("751.07"), item.unit_price 
   end
 
   def test_it_has_a_merchant_id

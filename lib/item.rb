@@ -15,20 +15,18 @@ class Item
     @id           = row[:id]
     @name         = row[:name]
     @description  = row[:description]
-    @unit_price   = row[:unit_price]
+    @unit_price   = BigDecimal.new(row[:unit_price])/100
     @merchant_id  = row[:merchant_id]
-    @created_at   = Date.parse(row[:created_at]).to_s 
-    @updated_at   = Date.parse(row[:updated_at]).to_s 
+    @created_at   = Date.parse(row[:created_at]).to_s
+    @updated_at   = Date.parse(row[:updated_at]).to_s
     @repository   = repository
   end
 
   def invoice_items
-    results = repository.engine.invoice_item_repository.find_all_by_item_id(id)
+    repository.engine.invoice_item_repository.find_all_by_item_id(id)
   end
 
   def merchant
-    invoice_item = repository.engine.invoice_item_repository.find_by_item_id(id)
-    invoice = repository.engine.invoice_repository.find_by_id(invoice_item.invoice_id)
-    merchant = repository.engine.merchant_repository.find_by_id(invoice.merchant_id)
+    repository.engine.merchant_repository.find_by_id(merchant_id)
   end
 end

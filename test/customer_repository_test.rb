@@ -26,4 +26,15 @@ class CustomerRepositoryTest < Minitest::Test
     results = @repo.find_by_id(999)
     assert_equal "999", results.id
   end
+
+  def test_it_returns_random_customers
+    skip
+    customer_one = @repo.random
+    customer_two = @repo.random
+    10.times do
+      break if customer_one.id == customer_two.id
+      customer_two = @repo.random
+      refute_equal customer_one.to_s, customer_two.to_s, "Broke due to random outcome. Run again."
+    end
+  end
 end

@@ -1,6 +1,8 @@
 gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
+require 'date'
+require 'bigdecimal'
 
 require_relative  '../lib/item_repository.rb'
 require_relative  '../lib/customer_repository.rb'

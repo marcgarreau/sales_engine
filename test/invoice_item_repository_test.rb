@@ -12,7 +12,7 @@ class InvoiceItemRepositoryTest < Minitest::Test
 
   def test_it_can_find_by_item_id
     result = @repo.find_by_item_id("2")
-    assert_equal "13635", result.unit_price
+    assert_equal BigDecimal.new("136.35"), result.unit_price
   end
 
   def test_it_can_find_all_by_quantity
