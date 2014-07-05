@@ -2,6 +2,7 @@ require 'bigdecimal'
 require 'date'
 
 class InvoiceItem
+  include Finder
   attr_reader :id,
               :item_id,
               :invoice_id,
@@ -15,10 +16,15 @@ class InvoiceItem
     @item_id    = row[:item_id]
     @invoice_id = row[:invoice_id]
     @quantity   = row[:quantity]
-    @unit_price = BigDecimal.new(row[:unit_price])/100
+    @unit_price = pricify(row[:unit_price])
     @created_at = Date.parse(row[:updated_at]).to_s
     @updated_at = Date.parse(row[:created_at]).to_s
     @repository = repository
+  end
+
+  def pricify(price)
+    x = price.to_f / 100
+    BigDecimal.new(x.to_s)
   end
 
   def item

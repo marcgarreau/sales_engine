@@ -21,4 +21,11 @@ class MerchantRepositoryTest < Minitest::Test
     assert_equal 2, results.count
     #find_by method returns an array
   end
+
+  def test_it_can_find_revenue_for_a_merchant
+    skip
+    date = Date.parse "Tue, 20 Mar 2012"
+    revenue = @repo.revenue(date)
+    assert_equal BigDecimal.new("2549722.91"), revenue
+  end
 end

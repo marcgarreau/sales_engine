@@ -18,6 +18,10 @@ class MerchantRepository
     @merchants = @csv.map {|row| Merchant.new(row, self)}
   end
 
+  def revenue(data)
+    
+  end
+
   define_finders :id,
                  :name
 end

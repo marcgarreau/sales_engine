@@ -1,5 +1,7 @@
 require_relative './test_helper.rb'
 require 'pry'
+require 'bigdecimal'
+
 class ItemRepositoryTest < Minitest::Test
 
   def setup
@@ -11,15 +13,15 @@ class ItemRepositoryTest < Minitest::Test
   end
 
   def test_it_can_find_by_unit_price
+
     result = @repo.find_by_unit_price(BigDecimal.new("751.07"))
+    binding.pry
     assert_equal "Item Qui Esse", result.name
-    #find method always returns one value
   end
 
   def test_it_can_find_all_by_name
     results = @repo.find_all_by_name("Item Expedita Fuga")
     assert_equal 1, results.count
-    #find_by method returns an array
   end
 
   def test_it_usually_returns_different_random_things
