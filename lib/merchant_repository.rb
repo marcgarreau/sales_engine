@@ -19,7 +19,7 @@ class MerchantRepository
   end
 
   def revenue(data)
-    
+    #find sum of (reduce(:+)) {each invoice item quantity * unit price}
   end
 
   define_finders :id,

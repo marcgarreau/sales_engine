@@ -15,9 +15,13 @@ class ItemRepository
     @items = @csv.map {|row| Item.new(row, self)}
   end
 
+  def find_by_unit_price(arg)
+    items.find {|x| x.unit_price == arg}
+  end
+
   define_finders :id,
                  :name,
                  :description,
-                 :unit_price,
+                #  :unit_price,
                  :merchant_id
 end
