@@ -32,4 +32,9 @@ class ItemRepositoryTest < Minitest::Test
       refute_equal item_one.to_s, item_two.to_s, "Broke due to random outcome. Run again."
     end
   end
+
+  # def test_it_can_find_items_best_day
+  #   item = repo.find_by_id("1")
+  #   assert_equal Date.parse("2012-03-27"), item.best_day
+  # end
 end

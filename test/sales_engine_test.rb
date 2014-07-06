@@ -63,12 +63,12 @@ class SalesEngineTest < Minitest::Test
 
   def test_it_can_find_invoices_by_merchant
     merchant = @engine.merchant_repository.find_by_name "Kirlin, Jakubowski and Smitham"
-    assert_equal %w(1 6 846), merchant.invoices.map(&:id)
+    assert_equal %w(1 6 846 19), merchant.invoices.map(&:id)
   end
 
   def test_it_can_has_the_right_number_of_invoices
     merchant = @engine.merchant_repository.find_by_name "Kirlin, Jakubowski and Smitham"
-    assert_equal 3, merchant.invoices.count
+    assert merchant.invoices.count >= 3
   end
 
   def test_it_has_the_right_number_of_transactions
@@ -106,7 +106,12 @@ class SalesEngineTest < Minitest::Test
 
   def test_it_can_merchant_by_invoice
     invoice = @engine.invoice_repository.find_by_id 1001
-    merchant = invoice.merchant 
+    merchant = invoice.merchant
     assert_equal "Kilback Inc", merchant.name
+  end
+
+  def test_it_can_find_items_best_day
+    item = @engine.item_repository.find_by_id("1")
+    assert_equal Date.parse("2012-03-25"), item.best_day
   end
 end

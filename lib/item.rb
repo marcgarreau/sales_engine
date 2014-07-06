@@ -29,9 +29,18 @@ class Item
 
   def invoice_items
     repository.engine.invoice_item_repository.find_all_by_item_id(id)
+    # returns array of invoice_item objects
   end
 
   def merchant
     repository.engine.merchant_repository.find_by_id(merchant_id)
+    # returns one merchant object
+  end
+
+  def best_day
+    #returns a date w/ most sales for the given item using invoice date
+    top_invoice_item = invoice_items.max_by {|x| x.quantity} #returns one invoice_item
+    top_invoice = repository.engine.invoice_repository.find_by_id(top_invoice_item.invoice_id)
+    top_invoice.created_at
   end
 end
