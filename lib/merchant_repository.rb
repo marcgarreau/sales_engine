@@ -11,11 +11,10 @@ class MerchantRepository
   alias_method :items,
                :merchants
 
-  def initialize(engine, file="./data/fixtures/fake_merchants.csv")
-    @results = []
-    @engine = engine
-    @csv = CSV.open(file, headers: true, header_converters: :symbol)
-    @merchants = @csv.map {|row| Merchant.new(row, self)}
+  def initialize(engine, filename="./data/fixtures/fake_merchants.csv")
+     @merchants = Parser.new.parse(filename, Merchant, self)
+     @engine    = engine
+     @results   = []
   end
 
   #what...?

@@ -1,7 +1,8 @@
 require 'csv'
 require 'date'
 require_relative 'customer'
-require './lib/finder.rb'
+require_relative 'finder'
+require_relative 'parser'
 
 class CustomerRepository
   include Finder
@@ -11,11 +12,10 @@ class CustomerRepository
   alias_method :items,
                :customers
 
-  def initialize(engine, file="./data/fixtures/fake_customers.csv")
-    @results = []
-    @engine = engine
-    @csv = CSV.open(file, headers: true, header_converters: :symbol)
-    @customers = @csv.map {|row| Customer.new(row, self)}
+  def initialize(engine, filename="./data/fixtures/fake_customers.csv")
+     @customers = Parser.new.parse(filename, Customer, self)
+     @engine = engine
+     @results = []
   end
 
   define_finders :id,

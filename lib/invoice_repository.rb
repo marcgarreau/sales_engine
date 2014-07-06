@@ -2,6 +2,7 @@ require 'csv'
 require 'date'
 require_relative './invoice.rb'
 require_relative 'finder'
+require_relative 'parser'
 
 class InvoiceRepository
   include Finder
@@ -11,10 +12,10 @@ class InvoiceRepository
   alias_method :items,
                :invoices
 
-  def initialize(engine, file="./data/fixtures/fake_invoices.csv")
-    @engine = engine
-    @csv = CSV.open(file, headers: true, header_converters: :symbol)
-    @invoices = @csv.map {|row| Invoice.new(row, self)}
+  def initialize(engine, filename="./data/fixtures/fake_invoices.csv")
+     @invoices = Parser.new.parse(filename, Invoice, self)
+     @engine   = engine
+     @results  = []
   end
 
   define_finders :id,

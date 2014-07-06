@@ -3,6 +3,7 @@ require 'bigdecimal'
 require 'date'
 require_relative 'invoice_item'
 require_relative 'finder'
+require_relative 'parser'
 
 class InvoiceItemRepository
   include Finder
@@ -11,10 +12,10 @@ class InvoiceItemRepository
   alias_method :items,
                :invoice_items
 
-  def initialize(engine, file="./data/fixtures/fake_invoice_items.csv")
-    @engine = engine
-    @csv = CSV.open(file, headers: true, header_converters: :symbol)
-    @invoice_items = @csv.map {|row| InvoiceItem.new(row, self)}
+  def initialize(engine, filename="./data/fixtures/fake_invoice_items.csv")
+     @invoice_items = Parser.new.parse(filename, InvoiceItem, self)
+     @engine        = engine
+     @results       = []
   end
 
   define_finders :id,

@@ -2,6 +2,7 @@ require 'csv'
 require 'Date'
 require_relative 'transaction'
 require_relative 'finder'
+require_relative 'parser'
 
 class TransactionRepository
   include Finder
@@ -11,11 +12,10 @@ class TransactionRepository
   alias_method :items,
                :transactions
 
-  def initialize(engine, file="./data/fixtures/fake_transactions.csv")
-    @collection = []
-    @engine = engine
-    @csv = CSV.open(file, headers: true, header_converters: :symbol)
-    @transactions = @csv.map {|row| Transaction.new(row, self)}
+  def initialize(engine, filename="./data/fixtures/fake_transactions.csv")
+     @transactions = Parser.new.parse(filename, Transaction, self)
+     @engine       = engine
+     @results      = []
   end
 
   define_finders :id,
