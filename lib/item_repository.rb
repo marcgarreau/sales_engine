@@ -22,6 +22,6 @@ class ItemRepository
   define_finders :id,
                  :name,
                  :description,
-                #  :unit_price,
+                #:unit_price,
                  :merchant_id
 end

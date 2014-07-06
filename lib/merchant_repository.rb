@@ -18,9 +18,12 @@ class MerchantRepository
     @merchants = @csv.map {|row| Merchant.new(row, self)}
   end
 
-  def revenue(data)
-    #find sum of (reduce(:+)) {each invoice item quantity * unit price}
-  end
+  #what...?
+  # def revenue(date)
+  #   #find sum of (reduce(:+)) {each invoice item quantity * unit price}
+  #   binding.pry
+  #   merchants.reduce(0) { |sum, merchant| sum + merchant.revenue(date) }
+  # end
 
   define_finders :id,
                  :name

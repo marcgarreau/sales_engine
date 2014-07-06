@@ -19,4 +19,10 @@ class InvoiceItemRepositoryTest < Minitest::Test
     results = @repo.find_all_by_quantity("6")
     assert results.count >= 2
   end
+
+  def test_it_has_a_total_price
+    result = @repo.find_by_id("2")
+    # binding.pry
+    assert 9 * BigDecimal.new("233.24"), result.total_price
+  end
 end

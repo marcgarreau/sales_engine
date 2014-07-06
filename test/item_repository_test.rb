@@ -33,5 +33,3 @@ class ItemRepositoryTest < Minitest::Test
     end
   end
 end
-
- #<BigDecimal:1019d48e0,'0.33311E5',9(18)>

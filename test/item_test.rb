@@ -42,7 +42,7 @@ class ItemTest<Minitest::Test
   end
 
   def test_it_knows_its_price
-    assert_equal BigDecimal.new("751.07"), item.unit_price 
+    assert_equal BigDecimal.new("751.07"), item.unit_price
   end
 
   def test_it_has_a_merchant_id
@@ -50,10 +50,10 @@ class ItemTest<Minitest::Test
   end
 
   def test_it_knows_when_it_was_created
-    assert_equal"2012-03-27", item.created_at
+    assert_equal Date.parse("2012-03-27"), item.created_at
   end
 
   def test_it_knows_when_it_was_updated
-    assert item.updated_at == "2012-03-27"
+    assert item.updated_at == Date.parse("2012-03-27")
   end
 end

@@ -48,10 +48,10 @@ class InvoiceTest < Minitest::Test
  end
 
  def test_it_knows_its_created_at
-   assert_equal "2012-03-25", result.created_at
+   assert_equal Date.parse("2012-03-25"), result.created_at
  end
 
  def test_it_knows_its_updated_at
-   assert_equal "2012-03-25", result.updated_at
+   assert_equal Date.parse("2012-03-25"), result.updated_at
  end
 end
