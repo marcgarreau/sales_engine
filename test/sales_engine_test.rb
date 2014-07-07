@@ -126,7 +126,7 @@ class SalesEngineTest < Minitest::Test
   end
 
   def test_it_can_find_items_by_total_number_sold
-    most = @engine.item_repository.most_items(37)
-    assert_equal "Something", most.first.name
+    most = @engine.item_repository.most_items(3)
+    assert_equal "Item Qui Esse", most.first.name
   end
 end
