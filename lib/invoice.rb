@@ -10,7 +10,7 @@ class Invoice
 
   def initialize(row, repository=nil)
     @id          = row[:id]
-    @customer_id = row[:customer_id]
+    @customer_id = row[:customer_id].to_i
     @merchant_id = row[:merchant_id]
     @status      = row[:status]
     @created_at  = Date.parse(row[:updated_at])
