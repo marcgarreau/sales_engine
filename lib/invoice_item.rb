@@ -13,9 +13,9 @@ class InvoiceItem
               :updated_at
 
   def initialize(row, repository=nil)
-    @id          = row[:id]
-    @item_id     = row[:item_id]
-    @invoice_id  = row[:invoice_id]
+    @id          = row[:id].to_i
+    @item_id     = row[:item_id].to_i
+    @invoice_id  = row[:invoice_id].to_i
     @quantity    = row[:quantity].to_i
     @unit_price  = pricify(row[:unit_price])
     @created_at  = Date.parse(row[:updated_at])

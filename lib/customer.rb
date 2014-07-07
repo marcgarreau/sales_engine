@@ -21,15 +21,13 @@ class Customer
   end
 
   def transactions
-    #returns array of Transaction objects associated with the Customer
-    #with the each invoice, find all transactions by invoice id
-    invoices.map {|invoice| @repository.engine.transaction_repository.find_all_by_invoice_id(invoice.id) }.flatten
+    invoices.flat_map(&:transactions)
   end
 
   def favorite_merchant
-    ids = transactions.map {|transaction| transaction.invoice_id }
-    top_id = ids.group_by {|id| id}.max_by {|k,v| v.count}.first #returns invoice_id value # needs to return Invoice Instance
-    invoice = @repository.engine.invoice_repository.find_by_id(top_id.to_s)
-    z = @repository.engine.merchant_repository.find_by_id(invoice.merchant_id)
+    ids = transactions.group_by(&:invoice_id)
+    top_id = ids.max_by {|_,v| v.count}.first
+    invoice = @repository.engine.invoice_repository.find_by_id(top_id)
+    invoice.merchant
   end
 end
