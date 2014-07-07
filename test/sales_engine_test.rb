@@ -12,7 +12,7 @@ class SalesEngineTest < Minitest::Test
 
   def test_it_finds_invoices_by_customer_id
     customer = @engine.customer_repository.find_by_id 999
-    assert customer.invoices.count == 7
+    assert customer.invoices.count >= 7
   end
 
   def test_it_can_find_an_invoice_from_a_transaction_or_something
@@ -113,5 +113,16 @@ class SalesEngineTest < Minitest::Test
   def test_it_can_find_items_best_day
     item = @engine.item_repository.find_by_id("1")
     assert_equal Date.parse("2012-03-25"), item.best_day
+  end
+
+  def test_it_finds_a_list_of_transactions_a_customer_has_had
+    customer = @engine.customer_repository.find_by_id("2")
+    assert customer.transactions.count >= 2
+  end
+
+  def test_it_finds_a_customers_favorite_merchant
+    skip
+    customer = @engine.customer_repository.find_by_id("2")
+    assert_equal "Fake0", customer.favorite_merchant.name
   end
 end
