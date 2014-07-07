@@ -23,6 +23,9 @@ class Merchant
     @repository.engine.invoice_repository.find_all_by_merchant_id(id)
   end
 
+  def revenue(date)
+    @repository.engine.merchant_repository.find_all_by_date(date)
+  end
   #return to >>>
   # def revenue(date)
   #   all_invoices = invoices_by_date(date)
