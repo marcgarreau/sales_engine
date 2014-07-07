@@ -121,8 +121,8 @@ class SalesEngineTest < Minitest::Test
   end
 
   def test_it_finds_a_customers_favorite_merchant
-    skip
+    # skip
     customer = @engine.customer_repository.find_by_id("2")
-    assert_equal "Fake0", customer.favorite_merchant.name
+    assert_equal "Fake1", customer.favorite_merchant.name
   end
 end
