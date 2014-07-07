@@ -37,6 +37,10 @@ class Item
     # returns one merchant object
   end
 
+  def quantity_sold
+    invoice_items.reduce(0) {|sum, invoice_item| sum += invoice_item.quantity }
+  end
+
   def best_day
     #returns a date w/ most sales for the given item using invoice date
     top_invoice_item = invoice_items.max_by {|x| x.quantity} #returns one invoice_item

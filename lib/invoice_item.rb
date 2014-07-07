@@ -16,7 +16,7 @@ class InvoiceItem
     @id          = row[:id]
     @item_id     = row[:item_id]
     @invoice_id  = row[:invoice_id]
-    @quantity    = row[:quantity]
+    @quantity    = row[:quantity].to_i
     @unit_price  = pricify(row[:unit_price])
     @created_at  = Date.parse(row[:updated_at])
     @updated_at  = Date.parse(row[:created_at])
