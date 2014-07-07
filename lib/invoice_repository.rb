@@ -12,7 +12,7 @@ class InvoiceRepository
   alias_method :items,
                :invoices
 
-  def initialize(engine, filename="./data/fixtures/fake_invoices.csv")
+  def initialize(engine, filename="./data/invoices.csv")
      @invoices = Parser.new.parse(filename, Invoice, self)
      @engine   = engine
      @results  = []

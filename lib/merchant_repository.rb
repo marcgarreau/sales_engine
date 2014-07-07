@@ -11,7 +11,7 @@ class MerchantRepository
   alias_method :items,
                :merchants
 
-  def initialize(engine, filename="./data/fixtures/fake_merchants.csv")
+  def initialize(engine, filename="./data/merchants.csv")
      @merchants = Parser.new.parse(filename, Merchant, self)
      @engine    = engine
      @results   = []

@@ -9,7 +9,7 @@ class ItemRepository
   include Finder
   attr_reader :items, :results, :engine
 
-  def initialize(engine, filename="./data/fixtures/fake_items.csv")
+  def initialize(engine, filename="./data/items.csv")
      @items    = Parser.new.parse(filename, Item, self)
      @engine   = engine
      @results  = []

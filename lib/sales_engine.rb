@@ -14,7 +14,7 @@ class SalesEngine
               :merchant_repository,
               :transaction_repository
 
-  def initialize
+  def initialize(arg)
     startup
   end
 

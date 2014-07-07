@@ -12,7 +12,7 @@ class CustomerRepository
   alias_method :items,
                :customers
 
-  def initialize(engine, filename="./data/fixtures/fake_customers.csv")
+  def initialize(engine, filename="./data/customers.csv")
      @customers = Parser.new.parse(filename, Customer, self)
      @engine = engine
      @results = []
