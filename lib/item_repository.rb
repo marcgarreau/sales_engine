@@ -19,6 +19,16 @@ class ItemRepository
     items.find {|x| x.unit_price == arg}
   end
 
+  def most_items(number)
+    # build assoc array with [item_id, quantity]
+    invoice_items = @engine.invoice_item_repository.all.flatten
+    item_ids = invoice_items.map { |i_item| i_item.item_id }
+    item_quantities = invoice_items.map { |i_item| i_item.quantity }
+    pairs = item_ids.zip(item_quantities)
+    # x = Array[ @engine.invoice_item_repository.all.flatten ]
+    # binding.pry
+  end
+
   define_finders :id,
                  :name,
                  :description,
