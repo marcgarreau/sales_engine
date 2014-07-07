@@ -32,6 +32,7 @@ class Customer
     customer_invoice = @repository.engine.invoice_repository.find_all_by_customer_id(id)
     customer_invoice_id = customer_invoice.id
     y = Hash[ transactions.map {|transaction| [transaction.invoice_id, @repository.engine.invoice_repository.find_all_by_id(transaction.invoice_id).count] } ]
+
     #check this logic ^^
     x = y.max_by { |k,v| v }.first
     # binding.pry
