@@ -4,7 +4,6 @@ require_relative 'item_repository'
 require_relative 'invoice_repository'
 require_relative 'invoice_item_repository'
 require_relative 'transaction_repository'
-require 'pry'
 
 class SalesEngine
   attr_reader :customer_repository,
@@ -32,7 +31,6 @@ end
 if __FILE__ == $0
   @engine = SalesEngine.new
   @engine.startup
-  binding.pry
   merchant = @engine.merchant_repository.find_by_name "Kirlin, Jakubowski and Smitham"
   invoice      = @engine.invoice_repository.find_by_merchant_id(id)
   invoice_item = @engine.invoice_item_repository.find_by_id(invoice.id)

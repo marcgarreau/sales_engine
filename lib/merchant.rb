@@ -1,5 +1,4 @@
 require 'date'
-require 'pry'
 
 class Merchant
   attr_reader :id,
@@ -23,9 +22,14 @@ class Merchant
     @repository.engine.invoice_repository.find_all_by_merchant_id(id)
   end
 
-  def revenue(date)
-    @repository.engine.merchant_repository.find_all_by_date(date)
+  def revenue
+    invoices_with_successful_charge.map(&:amount).reduce(0, :+)
   end
+
+  def invoices_with_successful_charge
+    invoices.select(&:has_successful_charge?)
+  end
+
   #return to >>>
   # def revenue(date)
   #   all_invoices = invoices_by_date(date)

@@ -23,4 +23,8 @@ class Transaction
   def invoice
     results = @repository.engine.invoice_repository.find_by_id(invoice_id)
   end
+
+  def successful?
+    result == 'success'
+  end
 end

@@ -33,19 +33,19 @@ class InvoiceItemTest < Minitest::Test
  end
 
  def test_it_knows_its_id
-   assert_equal "3", result.id
+   assert_equal 3, result.id
  end
 
  def test_it_knows_its_item_id
-   assert_equal "4", result.item_id
+   assert_equal 4, result.item_id
  end
 
  def test_it_knows_its_invoice_id
-   assert_equal "5", result.invoice_id
+   assert_equal 5, result.invoice_id
  end
 
  def test_it_knows_its_quantity
-   assert_equal "45", result.quantity
+   assert_equal 45, result.quantity
  end
 
  def test_it_knows_its_created_at
@@ -56,7 +56,7 @@ class InvoiceItemTest < Minitest::Test
    assert_equal Date.parse("2012-03-25"), result.updated_at
  end
 
- def test
-
+ def test_total_value
+   assert_equal BigDecimal.new("5014.80"), result.total_price
  end
 end

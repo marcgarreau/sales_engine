@@ -1,4 +1,5 @@
 require 'bigdecimal'
+require 'bigdecimal/util'
 require 'date'
 
 class InvoiceItem
@@ -24,8 +25,7 @@ class InvoiceItem
   end
 
   def pricify(price)
-    x = price.to_f / 100
-    BigDecimal.new(x.to_s)
+    price.to_d / 100
   end
 
   def item
@@ -37,6 +37,6 @@ class InvoiceItem
   end
 
   def total_price
-    unit_price * quantity.to_i
+    unit_price * quantity
   end
 end

@@ -38,6 +38,14 @@ class Invoice
     repository.engine.merchant_repository.find_by_id(merchant_id)
   end
 
+  def amount
+    invoice_items.map(&:total_price).reduce(0, :+)
+  end
+
+  def has_successful_charge?
+    transactions.any?(&:successful?)
+  end
+
   protected
 
   attr_reader :repository

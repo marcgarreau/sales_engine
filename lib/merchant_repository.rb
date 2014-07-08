@@ -20,7 +20,6 @@ class MerchantRepository
   #what...?
   # def revenue(date)
   #   #find sum of (reduce(:+)) {each invoice item quantity * unit price}
-  #   binding.pry
   #   merchants.reduce(0) { |sum, merchant| sum + merchant.revenue(date) }
   # end
 
