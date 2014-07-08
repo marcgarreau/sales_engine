@@ -54,10 +54,6 @@ class Invoice
     transactions.any?(&:successful?)
   end
 
-  def successful_transactions
-    transactions.find_all(&:successful?)
-  end
-
   protected
 
   attr_reader :repository

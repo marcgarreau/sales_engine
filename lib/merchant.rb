@@ -50,12 +50,4 @@ class Merchant
   def customers
     invoices.flat_map(&:customers)
   end
-
-  def successful_transactions
-    invoices.flat_map(&:successful_transactions)
-  end
-
-  def items_sold
-    #
-  end
 end
