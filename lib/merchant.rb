@@ -30,6 +30,11 @@ class Merchant
     invoices.map(&:amount).reduce(0, :+)
   end
 
+  def quantity_sold
+    invoices = invoices_with_successful_charge
+    invoices.map(&:quantity).reduce(0, :+)
+  end
+
   def invoices_with_successful_charge
     invoices.find_all(&:has_successful_charge?)
   end
@@ -48,5 +53,9 @@ class Merchant
 
   def successful_transactions
     invoices.flat_map(&:successful_transactions)
+  end
+
+  def items_sold
+    #
   end
 end

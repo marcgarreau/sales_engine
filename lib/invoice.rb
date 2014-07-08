@@ -46,6 +46,10 @@ class Invoice
     invoice_items.map(&:total_price).reduce(0, :+)
   end
 
+  def quantity
+    invoice_items.map(&:quantity).reduce(0, :+)
+  end
+
   def has_successful_charge?
     transactions.any?(&:successful?)
   end

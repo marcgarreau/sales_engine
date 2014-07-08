@@ -24,10 +24,6 @@ class Customer
     invoices.flat_map(&:transactions)
   end
 
-  # def successful_transactions
-  #   invoices.flat_map(&:successful_transactions)
-  # end
-
   def invoices_with_successful_charge
     invoices.find_all(&:has_successful_charge?)
   end
@@ -37,7 +33,6 @@ class Customer
       merchant_counts_hash[invoice.merchant_id] += 1
     end
     top_id = merchant_count.max_by {|_,count| count}.first
-    # binding.pry
     @repository.engine.merchant_repository.find_by_id(top_id)
   end
 end

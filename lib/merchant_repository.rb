@@ -21,6 +21,17 @@ class MerchantRepository
     merchants.map { |merchant| merchant.revenue(date) }.reduce(0, :+)
   end
 
+  def most_items(number)
+    # top merchants by items sold
+    all.sort_by {|merchant| merchant.quantity_sold }.reverse[0...number]
+     
+    # merchant_items = all.flat_map{ |merchant| merchant.items}
+    # merchant_items.sort_by { |item| item.quantity_sold }.reverse[0...number]
+
+    # binding.pry
+    # return merchant objects
+  end
+
   def inspect
     "#<#{self.class} #{merchants.size} rows>"
   end
