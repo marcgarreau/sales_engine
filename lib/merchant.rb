@@ -31,19 +31,22 @@ class Merchant
   end
 
   def invoices_with_successful_charge
-    invoices.select(&:has_successful_charge?)
+    invoices.find_all(&:has_successful_charge?)
   end
 
-  #return to >>>
-  # def revenue(date)
-  #   all_invoices = invoices_by_date(date)
-  #   all_invoices.reduce(0) { |sum, invoice| sum += invoice.total_price }
-  # end
-  #
-  # def invoices_by_date(date)
-  #   invoices.find_all do |invoice|
-  #     Date.parse(invoice.updated_at) == date
-  #   end
-  # end
+  def favorite_customer
+    cust_count = invoices_with_successful_charge.each_with_object(Hash.new(0)) do |invoice, counts|
+      counts[invoice.customer_id] +=1
+    end
+    top_customer_id = cust_count.max_by { |customer_id, count| count }[0]
+    @repository.engine.customer_repository.find_by_id(top_customer_id)
+  end
 
+  def customers
+    invoices.flat_map(&:customers)
+  end
+
+  def successful_transactions
+    invoices.flat_map(&:successful_transactions)
+  end
 end

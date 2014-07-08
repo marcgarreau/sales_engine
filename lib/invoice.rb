@@ -30,6 +30,10 @@ class Invoice
     repository.engine.customer_repository.find_by_id(customer_id)
   end
 
+  def customers
+    repository.engine.customer_repository.find_all_by_id(customer_id)
+  end
+
   def transactions
     repository.engine.transaction_repository.find_all_by_invoice_id(id)
   end
@@ -44,6 +48,10 @@ class Invoice
 
   def has_successful_charge?
     transactions.any?(&:successful?)
+  end
+
+  def successful_transactions
+    transactions.find_all(&:successful?)
   end
 
   protected
