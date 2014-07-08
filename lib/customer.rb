@@ -29,10 +29,15 @@ class Customer
     invoices.flat_map(&:successful_transactions)
   end
 
+  def invoices_with_successful_charge
+    invoices.find_all(&:has_successful_charge?)
+  end
+
   def favorite_merchant
-    ids = successful_transactions.group_by(&:invoice_id)
-    top_id = ids.max_by {|_,v| v.count}.first
-    invoice = @repository.engine.invoice_repository.find_by_id(top_id)
-    invoice.merchant
+    cust_count = invoices_with_successful_charge.each_with_object(Hash.new(0)) do |invoice, counts|
+      counts[invoice.customer_id] += 1
+    end
+    top_id = cust_count.max_by {|_,count| count}.first
+    @repository.engine.invoice_repository.find_by_id(top_id)
   end
 end
