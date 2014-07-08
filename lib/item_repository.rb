@@ -19,6 +19,10 @@ class ItemRepository
     all.sort_by{ |item| item.quantity_sold }.reverse[0,number]
   end
 
+  def inspect
+    "#<#{self.class} #{items.size} rows>"
+  end
+
   define_finders :id,
                  :name,
                  :description,

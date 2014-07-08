@@ -18,6 +18,10 @@ class CustomerRepository
      @results = []
   end
 
+  def inspect
+    "#<#{self.class} #{customers.size} rows>"
+  end
+
   define_finders :id,
                  :first_name,
                  :last_name

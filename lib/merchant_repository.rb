@@ -21,6 +21,10 @@ class MerchantRepository
     merchants.map { |merchant| merchant.revenue(date) }.reduce(0, :+)
   end
 
+  def inspect
+    "#<#{self.class} #{merchants.size} rows>"
+  end
+
   define_finders :id,
                  :name
 end

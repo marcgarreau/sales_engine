@@ -18,6 +18,10 @@ class TransactionRepository
      @results      = []
   end
 
+  def inspect
+    "#<#{self.class} #{transactions.size} rows>"
+  end
+
   define_finders :id,
                  :invoice_id,
                  :credit_card_number,

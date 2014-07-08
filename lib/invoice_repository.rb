@@ -18,6 +18,10 @@ class InvoiceRepository
      @results  = []
   end
 
+  def inspect
+    "#<#{self.class} #{invoices.size} rows>"
+  end
+
   define_finders :id,
                  :customer_id,
                  :merchant_id,
