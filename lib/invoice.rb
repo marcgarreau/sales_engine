@@ -46,6 +46,10 @@ class Invoice
     transactions.any?(&:successful?)
   end
 
+  def pending?
+    transactions.none?(&:successful?)
+  end
+
   protected
 
   attr_reader :repository

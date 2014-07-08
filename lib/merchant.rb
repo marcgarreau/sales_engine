@@ -1,10 +1,12 @@
 require 'date'
+require 'pry'
 
 class Merchant
   attr_reader :id,
               :name,
               :created_at,
               :updated_at
+              #:customer_invoices
 
   def initialize(row, repository=nil)
     @id          = row[:id].to_i
@@ -31,19 +33,11 @@ class Merchant
   end
 
   def invoices_with_successful_charge
-    invoices.select(&:has_successful_charge?)
+    invoices.find_all(&:has_successful_charge?)
   end
 
-  #return to >>>
-  # def revenue(date)
-  #   all_invoices = invoices_by_date(date)
-  #   all_invoices.reduce(0) { |sum, invoice| sum += invoice.total_price }
-  # end
-  #
-  # def invoices_by_date(date)
-  #   invoices.find_all do |invoice|
-  #     Date.parse(invoice.updated_at) == date
-  #   end
-  # end
-
+  def customers_with_pending_invoices
+    customer_invoices = invoices.find_all(&:pending?)
+    customers = customer_invoices.flat_map(&:customer)
+  end
 end
