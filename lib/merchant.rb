@@ -25,7 +25,7 @@ class Merchant
   def revenue(date = nil)
     invoices = invoices_with_successful_charge
     if date
-      invoices = invoices.select { |i| i.updated_at == date }
+      invoices = invoices.find_all { |i| i.updated_at == date }
     end
     invoices.map(&:amount).reduce(0, :+)
   end
