@@ -38,7 +38,7 @@ class Merchant
     cust_count = invoices_with_successful_charge.each_with_object(Hash.new(0)) do |invoice, counts|
       counts[invoice.customer_id] += 1
     end
-    top_customer_id = cust_count.max_by { |customer_id, count| count }[0]
+    top_customer_id = cust_count.max_by { |_, count| count }[0]
     @repository.engine.customer_repository.find_by_id(top_customer_id)
   end
 

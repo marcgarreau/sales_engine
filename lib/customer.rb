@@ -1,5 +1,4 @@
 require 'date'
-# require 'pry'
 
 class Customer
   attr_reader :id,
@@ -25,19 +24,20 @@ class Customer
     invoices.flat_map(&:transactions)
   end
 
-  def successful_transactions
-    invoices.flat_map(&:successful_transactions)
-  end
+  # def successful_transactions
+  #   invoices.flat_map(&:successful_transactions)
+  # end
 
   def invoices_with_successful_charge
     invoices.find_all(&:has_successful_charge?)
   end
 
   def favorite_merchant
-    cust_count = invoices_with_successful_charge.each_with_object(Hash.new(0)) do |invoice, counts|
-      counts[invoice.customer_id] += 1
+    merchant_count = invoices_with_successful_charge.each_with_object(Hash.new(0)) do |invoice, merchant_counts_hash|
+      merchant_counts_hash[invoice.merchant_id] += 1
     end
-    top_id = cust_count.max_by {|_,count| count}.first
-    @repository.engine.invoice_repository.find_by_id(top_id)
+    top_id = merchant_count.max_by {|_,count| count}.first
+    # binding.pry
+    @repository.engine.merchant_repository.find_by_id(top_id)
   end
 end
