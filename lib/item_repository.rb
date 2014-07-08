@@ -15,10 +15,6 @@ class ItemRepository
      @results  = []
   end
 
-  def find_by_unit_price(arg)
-    items.find {|x| x.unit_price == arg}
-  end
-
   def most_items(number)
     all.sort_by{ |item| item.quantity_sold }.reverse[0,number]
   end
@@ -26,6 +22,6 @@ class ItemRepository
   define_finders :id,
                  :name,
                  :description,
-                #:unit_price,
+                 :unit_price,
                  :merchant_id
 end

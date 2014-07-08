@@ -22,8 +22,12 @@ class Merchant
     @repository.engine.invoice_repository.find_all_by_merchant_id(id)
   end
 
-  def revenue
-    invoices_with_successful_charge.map(&:amount).reduce(0, :+)
+  def revenue(date = nil)
+    invoices = invoices_with_successful_charge
+    if date
+      invoices = invoices.select { |i| i.updated_at == date }
+    end
+    invoices.map(&:amount).reduce(0, :+)
   end
 
   def invoices_with_successful_charge

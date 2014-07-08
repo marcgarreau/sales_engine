@@ -17,11 +17,9 @@ class MerchantRepository
      @results   = []
   end
 
-  #what...?
-  # def revenue(date)
-  #   #find sum of (reduce(:+)) {each invoice item quantity * unit price}
-  #   merchants.reduce(0) { |sum, merchant| sum + merchant.revenue(date) }
-  # end
+  def revenue(date)
+    merchants.map { |merchant| merchant.revenue(date) }.reduce(0, :+)
+  end
 
   define_finders :id,
                  :name
