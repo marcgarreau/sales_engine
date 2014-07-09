@@ -92,26 +92,20 @@ class SalesEngineTest < Minitest::Test
     assert_equal 8, invoice.invoice_items.count
   end
 
-  def test_it_can_find_an_invoice_item_by_name
-    invoice = @engine.invoice_repository.find_by_id 1001
-    item = invoice.invoice_items.find {|ii| ii.item.name == 'Item Accusamus Officia' }
-    assert_equal "", item.name
-  end
-
   def test_it_can_merchant_by_invoice
     invoice = @engine.invoice_repository.find_by_id 901
     merchant = invoice.merchant
-    assert_equal "Kilback Inc", merchant.name
+    assert_equal "Eichmann-Turcotte", merchant.name
   end
 
   def test_it_can_find_items_best_day
     item = @engine.item_repository.find_by_id(901)
-    assert_equal Date.parse("2012-03-25"), item.best_day
+    assert_equal Date.parse("2012-03-20"), item.best_day
   end
 
-  def test_it_finds_a_list_of_transactions_a_customer_has_had
-    customer = @engine.customer_repository.find_by_id(1001)
-    assert_equal 2, customer.transactions.count
+  def test_it_finds_transactions_from_a_customer
+    customer = @engine.customer_repository.find_by_id(45)
+    assert_equal 8, customer.transactions.count
   end
 
   def test_it_finds_a_customers_favorite_merchant
