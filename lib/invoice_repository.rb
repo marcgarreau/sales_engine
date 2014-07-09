@@ -20,7 +20,6 @@ class InvoiceRepository
 
   def create(hash)
     id = all.count + 1
-    binding.pry
     invoice = Invoice.new({:id         => id,
                           :customer_id => hash[:customer].id,
                           :merchant_id => hash[:merchant].id,

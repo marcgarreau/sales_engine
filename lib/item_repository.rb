@@ -27,6 +27,10 @@ class ItemRepository
     "#<#{self.class} #{items.size} rows>"
   end
 
+  # def find_by_unit_price(unit_price)
+  #   all.find { |item| item.unit_price == unit_price }
+  # end
+
   define_finders :id,
                  :name,
                  :description,

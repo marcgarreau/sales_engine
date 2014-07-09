@@ -25,7 +25,7 @@ class InvoiceItem
   end
 
   def pricify(price)
-    price.to_d.div(100)
+    price.to_d / 100
   end
 
   def item
