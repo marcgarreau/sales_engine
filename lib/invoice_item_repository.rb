@@ -1,5 +1,6 @@
 require 'csv'
 require 'bigdecimal'
+require 'bigdecimal/util'
 require 'date'
 require_relative 'invoice_item'
 require_relative 'finder'
@@ -30,7 +31,7 @@ class InvoiceItemRepository
                                     item_id: item.id,
                                     invoice_id: invoice_id,
                                     quantity: quantity,
-                                    unit_price: item.unit_price,
+                                    unit_price: item.unit_price.to_d / 100,
                                     created_at: Time.now.utc.to_s,
                                     updated_at: Time.now.utc.to_s },
                                     self
