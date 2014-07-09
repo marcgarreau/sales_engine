@@ -12,9 +12,19 @@ class ItemRepositoryTest < Minitest::Test
     assert repo.items.count >= 10
   end
 
+  def test_it_can_find_by_id
+    result = repo.find_by_id(15)
+    assert_equal "Item Rerum Est", result.name
+  end
+
   def test_it_can_find_by_unit_price
     result = repo.find_by_unit_price(BigDecimal.new("670.76"))
     assert_equal "Item Autem Minima", result.name
+  end
+
+  def test_it_can_find_merchant_id
+    result = repo.find_by_merchant_id(1)
+    assert_equal "Item Qui Esse", result.name
   end
 
   def test_it_can_find_all_by_name
@@ -23,7 +33,6 @@ class ItemRepositoryTest < Minitest::Test
   end
 
   def test_it_usually_returns_different_random_things
-    skip
     item_one = repo.random
     item_two = repo.random
     3.times do
@@ -32,9 +41,4 @@ class ItemRepositoryTest < Minitest::Test
       refute_equal item_one.to_s, item_two.to_s, "Broke due to random outcome. Run again."
     end
   end
-
-  # def test_it_can_find_items_best_day
-  #   item = repo.find_by_id("1")
-  #   assert_equal Date.parse("2012-03-27"), item.best_day
-  # end
 end
