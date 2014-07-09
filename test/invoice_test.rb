@@ -32,15 +32,15 @@ class InvoiceTest < Minitest::Test
  end
 
  def test_it_knows_its_id
-   assert_equal "3", result.id
+   assert_equal 3, result.id
  end
 
  def test_it_knows_its_customer_id
-   assert_equal "4", result.customer_id
+   assert_equal 4, result.customer_id
  end
 
  def test_it_knows_its_merchant_id
-   assert_equal "5", result.merchant_id
+   assert_equal 5, result.merchant_id
  end
 
  def test_it_knows_its_status
