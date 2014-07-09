@@ -1,7 +1,6 @@
 require 'csv'
 require 'bigdecimal'
 require 'date'
-require 'pry'
 require_relative './item.rb'
 require_relative 'finder'
 require_relative 'parser'
