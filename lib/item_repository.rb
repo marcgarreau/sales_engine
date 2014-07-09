@@ -20,6 +20,10 @@ class ItemRepository
     all.sort_by{ |item| item.quantity_sold }.reverse[0...number]
   end
 
+  def most_revenue(number)
+    all.sort_by { |item| item.revenue }.reverse[0...number]
+  end
+
   def inspect
     "#<#{self.class} #{items.size} rows>"
   end

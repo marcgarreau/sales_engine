@@ -44,7 +44,8 @@ class Merchant
   def customers_with_pending_invoices
     customer_invoices = invoices.find_all(&:pending?)
     customers = customer_invoices.flat_map(&:customer)
-
+  end
+  
   def favorite_customer
     cust_count = invoices_with_successful_charge.each_with_object(Hash.new(0)) do |invoice, counts|
       counts[invoice.customer_id] += 1

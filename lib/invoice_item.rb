@@ -39,4 +39,8 @@ class InvoiceItem
   def total_price
     unit_price * quantity
   end
+
+  def successful?
+    invoice.has_successful_charge?
+  end
 end
