@@ -48,8 +48,14 @@ class Item
   end
 
   def best_day
-    top_invoice_item = invoice_items.max_by {|x| x.quantity} #returns one invoice_item
-    top_invoice = repository.engine.invoice_repository.find_by_id(top_invoice_item.invoice_id)
     top_invoice.created_at
+  end
+
+  def top_invoice_item
+    invoice_items.max_by {|x| x.quantity}
+  end
+
+  def top_invoice
+    repository.engine.invoice_repository.find_by_id(top_invoice_item.invoice_id)
   end
 end
