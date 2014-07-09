@@ -1,4 +1,5 @@
 require 'bigdecimal'
+require 'bigdecimal/util'
 require 'date'
 
 class Item
@@ -23,8 +24,7 @@ class Item
   end
 
   def pricify(price)
-    x = price.to_f / 100
-    BigDecimal.new(x.to_s)
+    price.to_d / 100
   end
 
   def invoice_items
@@ -38,7 +38,13 @@ class Item
   end
 
   def quantity_sold
-    invoice_items.reduce(0) {|sum, invoice_item| sum += invoice_item.quantity }
+    invoice_items.reduce(0) do |sum, ii|
+      if ii.invoice.has_successful_charge? # bring this outside
+        sum += ii.quantity
+      else
+        sum
+      end
+    end
   end
 
   def best_day
@@ -47,4 +53,6 @@ class Item
     top_invoice = repository.engine.invoice_repository.find_by_id(top_invoice_item.invoice_id)
     top_invoice.created_at
   end
+
+
 end

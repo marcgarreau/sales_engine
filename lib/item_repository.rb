@@ -1,6 +1,7 @@
 require 'csv'
 require 'bigdecimal'
 require 'date'
+require 'pry'
 require_relative './item.rb'
 require_relative 'finder'
 require_relative 'parser'
@@ -16,7 +17,7 @@ class ItemRepository
   end
 
   def most_items(number)
-    all.sort_by{ |item| item.quantity_sold }.reverse[0,number]
+    all.sort_by{ |item| item.quantity_sold }.reverse[0...number]
   end
 
   def inspect

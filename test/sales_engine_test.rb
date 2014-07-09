@@ -129,4 +129,9 @@ class SalesEngineTest < Minitest::Test
     most = @engine.item_repository.most_items(3)
     assert_equal "Item Qui Esse", most.first.name
   end
+
+  def test_it_can_find_favorite_customer
+    merchant = @engine.merchant_repository.find_by_name "Terry-Moore"
+    assert_equal "blah", merchant.favorite_customer.first_name
+  end
 end

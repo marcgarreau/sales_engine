@@ -30,6 +30,10 @@ class Invoice
     repository.engine.customer_repository.find_by_id(customer_id)
   end
 
+  def customers
+    repository.engine.customer_repository.find_all_by_id(customer_id)
+  end
+
   def transactions
     repository.engine.transaction_repository.find_all_by_invoice_id(id)
   end
@@ -40,6 +44,10 @@ class Invoice
 
   def amount
     invoice_items.map(&:total_price).reduce(0, :+)
+  end
+
+  def quantity
+    invoice_items.map(&:quantity).reduce(0, :+)
   end
 
   def has_successful_charge?

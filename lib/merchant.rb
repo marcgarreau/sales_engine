@@ -32,6 +32,11 @@ class Merchant
     invoices.map(&:amount).reduce(0, :+)
   end
 
+  def quantity_sold
+    invoices = invoices_with_successful_charge
+    invoices.map(&:quantity).reduce(0, :+)
+  end
+
   def invoices_with_successful_charge
     invoices.find_all(&:has_successful_charge?)
   end
@@ -39,5 +44,16 @@ class Merchant
   def customers_with_pending_invoices
     customer_invoices = invoices.find_all(&:pending?)
     customers = customer_invoices.flat_map(&:customer)
+
+  def favorite_customer
+    cust_count = invoices_with_successful_charge.each_with_object(Hash.new(0)) do |invoice, counts|
+      counts[invoice.customer_id] += 1
+    end
+    top_customer_id = cust_count.max_by { |_, count| count }[0]
+    @repository.engine.customer_repository.find_by_id(top_customer_id)
+  end
+
+  def customers
+    invoices.flat_map(&:customers)
   end
 end
