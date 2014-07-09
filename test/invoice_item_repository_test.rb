@@ -10,19 +10,23 @@ class InvoiceItemRepositoryTest < Minitest::Test
     assert @repo.invoice_items.count >= 10
   end
 
-  def test_it_can_find_by_item_id
-    result = @repo.find_by_item_id("2")
-    assert_equal BigDecimal.new("136.35"), result.unit_price
+  def test_it_can_find_a_unit_price_by_item_id
+    result = @repo.find_by_item_id(4)
+    assert_equal BigDecimal.new("42.91"), result.unit_price
+  end
+
+  def test_it_can_find_all_by_invoice_id
+    results = @repo.find_all_by_invoice_id(1)
+    assert_equal 8, results.count
   end
 
   def test_it_can_find_all_by_quantity
-    results = @repo.find_all_by_quantity("6")
-    assert results.count >= 2
+    results = @repo.find_all_by_quantity(5)
+    assert_equal 2164, results.count
   end
 
-  def test_it_has_a_total_price
-    result = @repo.find_by_id("2")
-    # binding.pry
-    assert 9 * BigDecimal.new("233.24"), result.total_price
+  def test_it_can_find_by_unit_price
+    results = @repo.find_by_unit_price(BigDecimal.new("310.99"))
+    assert_equal 1845, results.item_id
   end
 end
