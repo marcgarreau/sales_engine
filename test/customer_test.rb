@@ -1,4 +1,5 @@
 require_relative 'test_helper.rb'
+require 'pry'
 
 class CustomerTest<Minitest::Test
   attr_reader :data,
@@ -26,7 +27,7 @@ class CustomerTest<Minitest::Test
   end
 
   def test_it_knows_its_id
-    assert customer.id == "3"
+    assert_equal 3, customer.id 
   end
 
   def test_it_knows_its_first_name

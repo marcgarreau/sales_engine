@@ -46,7 +46,7 @@ class Merchant
     customers = customer_invoices.flat_map(&:customer)
   end
 
-  def favorite_customer
+  def favorite_customer 
     @repository.engine.customer_repository.find_by_id(top_customer_id)
   end
 
