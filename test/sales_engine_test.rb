@@ -23,17 +23,17 @@ class SalesEngineTest < Minitest::Test
 
   def test_it_can_find_invoice_items_by_name
     item = @engine.item_repository.find_by_name "Item Saepe Ipsum"
-    assert_equal 1, item.invoice_items.count
+    assert_equal 8, item.invoice_items.count
   end
 
   def test_it_can_find_a_merchant_by_title
     item = @engine.item_repository.find_by_name "Item Saepe Ipsum"
-    assert item.merchant.name == "Kilback Inc"
+    assert "Kilback Inc", item.merchant.name
   end
 
   def test_it_can_find_an_invoice
     invoice_item = @engine.invoice_item_repository.find_by_id 16934
-    assert invoice_item.item.name == "Item Cupiditate Magni"
+    assert "Item Cupiditate Magni", invoice_item.item.name
   end
 
   def test_invoice_item_has_an_invoice
@@ -43,17 +43,17 @@ class SalesEngineTest < Minitest::Test
 
   def test_invoice_has_many_invoice_items
     invoice = @engine.invoice_repository.find_by_id 1
-    assert_equal %w(1 2 3 4 5 6 7 8), invoice.invoice_items.map(&:id)
+    assert_equal 8, invoice.invoice_items.map(&:id).count
   end
 
   def test_invoice_has_many_items
     invoice = @engine.invoice_repository.find_by_id 1
-    assert_equal %w(2 3 4 5 6 7 8 9), invoice.items.map(&:id)
+    assert_equal 8, invoice.items.map(&:id).count
   end
 
   def test_it_finds_items_by_merchant
     merchant = @engine.merchant_repository.find_by_name "Kirlin, Jakubowski and Smitham"
-    assert_equal %w(1880), merchant.items.map(&:id)
+    assert_equal 33, merchant.items.map(&:id).count
   end
 
   def test_it_has_the_right_number_of_items
@@ -63,7 +63,7 @@ class SalesEngineTest < Minitest::Test
 
   def test_it_can_find_invoices_by_merchant
     merchant = @engine.merchant_repository.find_by_name "Kirlin, Jakubowski and Smitham"
-    assert_equal %w(1 6 846 19), merchant.invoices.map(&:id)
+    assert_equal 43, merchant.invoices.map(&:id).count
   end
 
   def test_it_can_has_the_right_number_of_invoices
@@ -73,18 +73,12 @@ class SalesEngineTest < Minitest::Test
 
   def test_it_has_the_right_number_of_transactions
     invoice = @engine.invoice_repository.find_by_id 1001
-    assert_equal 1, invoice.transactions.count
+    assert_equal 3, invoice.transactions.count
   end
 
   def test_it_has_the_right_number_of_items
     invoice = @engine.invoice_repository.find_by_id 1001
-    assert_equal 2, invoice.items.count
-  end
-
-  def test_it_can_find_an_item_with_a_specific_name
-    invoice = @engine.invoice_repository.find_by_id 1001
-    item = invoice.items.find {|i| i.name == 'Item Accusamus Officia'}
-    assert item
+    assert_equal 8, invoice.items.count
   end
 
   def test_it_can_find_customers_by_name
@@ -95,43 +89,49 @@ class SalesEngineTest < Minitest::Test
 
   def test_it_has_the_right_number_of_invoice_items
     invoice = @engine.invoice_repository.find_by_id 1001
-    assert_equal 2, invoice.invoice_items.count
+    assert_equal 8, invoice.invoice_items.count
   end
 
   def test_it_can_find_an_invoice_item_by_name
     invoice = @engine.invoice_repository.find_by_id 1001
     item = invoice.invoice_items.find {|ii| ii.item.name == 'Item Accusamus Officia' }
-    assert item
+    assert_equal "", item.name
   end
 
   def test_it_can_merchant_by_invoice
-    invoice = @engine.invoice_repository.find_by_id 1001
+    invoice = @engine.invoice_repository.find_by_id 901
     merchant = invoice.merchant
     assert_equal "Kilback Inc", merchant.name
   end
 
   def test_it_can_find_items_best_day
-    item = @engine.item_repository.find_by_id("1")
+    item = @engine.item_repository.find_by_id(901)
     assert_equal Date.parse("2012-03-25"), item.best_day
   end
 
   def test_it_finds_a_list_of_transactions_a_customer_has_had
-    customer = @engine.customer_repository.find_by_id("2")
-    assert customer.transactions.count >= 2
+    customer = @engine.customer_repository.find_by_id(1001)
+    assert_equal 2, customer.transactions.count
   end
 
   def test_it_finds_a_customers_favorite_merchant
-    customer = @engine.customer_repository.find_by_id("2")
-    assert_equal "Fake1", customer.favorite_merchant.name
+    customer = @engine.customer_repository.find_by_id(2)
+    assert_equal "Shields, Hirthe and Smith", customer.favorite_merchant.name
   end
 
   def test_it_can_find_items_by_total_number_sold
     most = @engine.item_repository.most_items(3)
-    assert_equal "Item Qui Esse", most.first.name
+    assert_equal "Item Dicta Autem", most.first.name
   end
 
   def test_it_can_find_favorite_customer
     merchant = @engine.merchant_repository.find_by_name "Terry-Moore"
-    assert_equal "blah", merchant.favorite_customer.first_name
+    assert_equal "Jayme", merchant.favorite_customer.first_name
+  end
+
+  def test_it_returns_all_revenue_for_a_specific_date
+    date = Date.parse "Tue, 20 Mar 2012"
+    revenue = @engine.merchant_repository.revenue(date)
+    assert_equal BigDecimal.new("2549722.91"), revenue
   end
 end

@@ -24,33 +24,18 @@ class MerchantTest<Minitest::Test
   end
 
   def test_it_knows_its_id
-    assert merchant.id == "1"
+    assert_equal 1, merchant.id
   end
 
   def test_it_knows_its_name
-    assert merchant.name == "Schroeder-Jerde"
+    assert_equal "Schroeder-Jerde", merchant.name
   end
 
   def test_it_knows_when_it_was_created
-    assert merchant.created_at == Date.parse("2012-03-27")
+    assert Date.parse("2012-03-27"), merchant.created_at
   end
 
   def test_it_knows_when_it_was_updated
-    assert merchant.updated_at == Date.parse("2012-03-27")
-  end
-
-  def test_that_it_finds_invoices_by_date
-    skip
-    date = Date.parse("2012-03-27")
-    binding.pry
-    x = merchant.invoices_by_date(date)
-    assert_equal 3, x.count
-  end
-
-  def test_it_returns_all_revenue_for_a_specific_date
-    skip
-    date = Date.parse "Tue, 20 Mar 2012"
-    revenue = @merchant.revenue(date)
-    assert_equal BigDecimal.new("2549722.91"), revenue
+    assert Date.parse("2012-03-27"), merchant.updated_at
   end
 end

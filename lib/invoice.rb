@@ -59,19 +59,8 @@ repository.engine.transaction_repository.find_all_by_invoice_id(id)
   end
 
   def charge(credit_card_data)
-    repository.engine.transaction_repository.create_transaction(credit_card_data, id)
-
+repository.engine.transaction_repository.create_transaction(credit_card_data, id)
   end
-      # it "creates a transaction" do
-      #   invoice = engine.invoice_repository.find_by_id(100)
-      #   prior_transaction_count = invoice.transactions.count
-      #
-      #   invoice.charge(credit_card_number: '1111222233334444',  credit_card_expiration_date: "10/14", result: "success")
-      #
-      #   invoice = engine.invoice_repository.find_by_id(invoice.id)
-      #   invoice.transactions.count.should == prior_transaction_count + 1
-
-
 
   protected
 

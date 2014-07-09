@@ -34,11 +34,11 @@ class TransactionTest < Minitest::Test
  end
 
  def test_it_knows_its_id
-   assert_equal "3", result.id
+   assert_equal 3, result.id
  end
 
  def test_it_knows_its_invoice_id
-   assert_equal "4", result.invoice_id
+   assert_equal 4, result.invoice_id
  end
 
  def test_it_knows_its_credit_card_number
