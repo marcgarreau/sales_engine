@@ -30,7 +30,7 @@ class ItemTest<Minitest::Test
   end
 
   def test_it_knows_its_id
-    assert item.id == "1"
+    assert_equal 1, item.id
   end
 
   def test_it_knows_its_name
@@ -46,7 +46,7 @@ class ItemTest<Minitest::Test
   end
 
   def test_it_has_a_merchant_id
-    assert item.merchant_id == "3"
+    assert_equal 3, item.merchant_id 
   end
 
   def test_it_knows_when_it_was_created
