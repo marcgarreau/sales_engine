@@ -22,6 +22,23 @@ class InvoiceItemRepository
     "#<#{self.class} #{invoice_items.size} rows>"
   end
 
+  def create_invoice_item(item_info, invoice_id)
+    id = all.count + 1
+    item = item_info[0]
+    quantity = item_info[1]
+    invoice_item = InvoiceItem.new({id: id,
+                                    item_id: item.id,
+                                    invoice_id: invoice_id,
+                                    quantity: quantity,
+                                    unit_price: item.unit_price,
+                                    created_at: Time.now.utc.to_s,
+                                    updated_at: Time.now.utc.to_s },
+                                    self
+                    )
+    all << invoice_item
+    invoice_item
+  end
+
   define_finders :id,
                  :item_id,
                  :invoice_id,
