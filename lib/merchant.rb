@@ -5,7 +5,8 @@ class Merchant
   attr_reader :id,
               :name,
               :created_at,
-              :updated_at
+              :updated_at,
+              :top_customer_id
 
   def initialize(row, repository=nil)
     @id          = row[:id].to_i
@@ -46,11 +47,17 @@ class Merchant
   end
 
   def favorite_customer
-    cust_count = invoices_with_successful_charge.each_with_object(Hash.new(0)) do |invoice, counts|
+    @repository.engine.customer_repository.find_by_id(top_customer_id)
+  end
+
+  def customer_count
+    invoices_with_successful_charge.each_with_object(Hash.new(0)) do |invoice, counts|
       counts[invoice.customer_id] += 1
     end
-    top_customer_id = cust_count.max_by { |_, count| count }[0]
-    @repository.engine.customer_repository.find_by_id(top_customer_id)
+  end
+
+  def top_customer_id
+    customer_count.max_by { |_, count| count }[0]
   end
 
   def customers

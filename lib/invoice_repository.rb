@@ -8,7 +8,8 @@ class InvoiceRepository
   include Finder
   attr_reader  :invoices,
                :results,
-               :engine
+               :engine,
+               :new_invoice_items
   alias_method :items,
                :invoices
 
@@ -28,14 +29,19 @@ class InvoiceRepository
                           :updated_at  => Time.now.utc.to_s },
                           self
                           )
-
-    items = hash[:items].group_by { |item| item }.map { |k, v| [k, v.count] }
-    items.each do |item_info|
-      @engine.invoice_item_repository.create_invoice_item(item_info, id)
-    end
-
+    new_invoice_items
     all << invoice
     invoice
+  end
+
+  def new_items
+    hash[:items].group_by { |item| item }.map { |k, v| [k, v.count] }
+  end
+
+  def new_invoice_items(new_items)
+    new_items.each do |item_info|
+      @engine.invoice_item_repository.create_invoice_item(item_info, id)
+    end
   end
 
   def inspect
