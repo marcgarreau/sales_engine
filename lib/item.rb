@@ -24,7 +24,7 @@ class Item
   end
 
   def pricify(price)
-    price.to_d / 100
+    price.to_d.div(100)
   end
 
   def invoice_items
@@ -40,21 +40,11 @@ class Item
   end
 
   def revenue
-    # merchant.revenue
-    # successful_invoice_items.map(&:amount).reduce(0, :+)
-    successful_invoice_items.reduce(0) do |sum, invoice_item|
-      sum += invoice_item.quantity
-    end
+    quantity_sold * unit_price
   end
 
   def quantity_sold
-    invoice_items.reduce(0) do |sum, ii|
-      if ii.invoice.has_successful_charge? # bring this outside
-        sum += ii.quantity
-      else
-        sum
-      end
-    end
+    successful_invoice_items.reduce(0) { |sum, ii| sum += ii.quantity }
   end
 
   def best_day
