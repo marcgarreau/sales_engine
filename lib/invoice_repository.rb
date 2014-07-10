@@ -30,7 +30,7 @@ class InvoiceRepository
                           :updated_at  => Time.now.utc.to_s },
                           self
                           )
-    new_items = hash[:items].group_by { |item| item }.map { |k, v| [k, v.count] }
+    new_items = hash[:items].group_by { |i| i }.map { |k, v| [k, v.count] }
     new_items.each do |item_info|
       @engine.invoice_item_repository.create_invoice_item(item_info, id)
     end

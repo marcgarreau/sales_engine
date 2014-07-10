@@ -18,16 +18,18 @@ class TransactionRepository
      @results      = []
   end
 
-  def create_transaction(credit_card_data, invoice_id)
+  def create_transaction(credit_card, invoice_id)
     id = all.count + 1
-    transaction = Transaction.new({id: id,
-                                   invoice_id: invoice_id,
-                                   credit_card_number: credit_card_data[:credit_card_number],
-                                   credit_card_expiration_date: credit_card_data[:credit_card_expiration_date],
-                                   result: credit_card_data[:result],
-                                   created_at: Time.now.utc.to_s,
-                                   updated_at: Time.now.utc.to_s},
-                                   self)
+    transaction = Transaction.new({
+      id: id,
+      invoice_id: invoice_id,
+      credit_card_number: credit_card[:credit_card_number],
+      credit_card_expiration_date: credit_card[:credit_card_expiration_date],
+      result: credit_card[:result],
+      created_at: Time.now.utc.to_s,
+      updated_at: Time.now.utc.to_s },
+      self
+      )
     all << transaction
     transaction
   end

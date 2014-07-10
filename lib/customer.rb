@@ -29,8 +29,8 @@ class Customer
   end
 
   def merchant_count
-    successful_charges.each_with_object(Hash.new(0)) do |invoice, merchant_counts_hash|
-      merchant_counts_hash[invoice.merchant_id] += 1
+    successful_charges.each_with_object(Hash.new(0)) do |invoice, merchants|
+      merchants[invoice.merchant_id] += 1
     end
   end
 

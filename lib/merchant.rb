@@ -25,7 +25,7 @@ class Merchant
   end
 
   def revenue(date = nil)
-    invoices = invoices_with_successful_charge
+    invoices = successful_invoices
     if date
       invoices = invoices.find_all { |i| i.updated_at == date }
     end
@@ -33,11 +33,11 @@ class Merchant
   end
 
   def quantity_sold
-    invoices = invoices_with_successful_charge
+    invoices = successful_invoices
     invoices.map(&:quantity).reduce(0, :+)
   end
 
-  def invoices_with_successful_charge
+  def successful_invoices
     invoices.find_all(&:has_successful_charge?)
   end
 
@@ -46,12 +46,12 @@ class Merchant
     customers = customer_invoices.flat_map(&:customer)
   end
 
-  def favorite_customer 
+  def favorite_customer
     @repository.engine.customer_repository.find_by_id(top_customer_id)
   end
 
   def customer_count
-    invoices_with_successful_charge.each_with_object(Hash.new(0)) do |invoice, counts|
+    successful_invoices.each_with_object(Hash.new(0)) do |invoice, counts|
       counts[invoice.customer_id] += 1
     end
   end
