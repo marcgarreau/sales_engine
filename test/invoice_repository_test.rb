@@ -34,4 +34,6 @@ class InvoiceRepositoryTest < Minitest::Test
     results = @repo.find_all_by_status("shipped")
     assert results.count >= 10
   end
+
+  #def test_your_business_intelligence
 end

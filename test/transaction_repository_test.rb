@@ -21,5 +21,5 @@ class TransactionRepositoryTest < Minitest::Test
     results = @repo.find_all_by_result("success")
     assert results.count >= 10
   end
-
+  #def test_your_business_intelligence
 end

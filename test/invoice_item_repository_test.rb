@@ -29,4 +29,6 @@ class InvoiceItemRepositoryTest < Minitest::Test
     results = @repo.find_by_unit_price(BigDecimal.new("310.99"))
     assert_equal 1845, results.item_id
   end
+
+  #def test_your_business_intelligence
 end
