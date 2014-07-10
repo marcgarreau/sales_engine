@@ -16,11 +16,11 @@ class ItemRepository
   end
 
   def most_items(number)
-    all.sort_by{ |item| item.quantity_sold }.reverse[0...number]
+    all.sort_by{ |item| -item.quantity_sold }[0...number]
   end
 
   def most_revenue(number)
-    all.sort_by { |item| item.revenue }.reverse[0...number]
+    all.sort_by { |item| -item.revenue }[0...number]
   end
 
   def inspect

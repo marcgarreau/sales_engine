@@ -59,4 +59,6 @@ class InvoiceItemTest < Minitest::Test
  def test_total_value
    assert_equal BigDecimal.new("5014.80"), result.total_price
  end
+
+ #def test_your_business_intelligence
 end

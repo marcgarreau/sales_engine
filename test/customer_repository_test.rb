@@ -34,4 +34,6 @@ class CustomerRepositoryTest < Minitest::Test
       refute_equal customer_one.to_s, customer_two.to_s, "Broke due to random outcome. Run again."
     end
   end
+
+  #def test_your_business_intelligence
 end

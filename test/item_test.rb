@@ -46,7 +46,7 @@ class ItemTest<Minitest::Test
   end
 
   def test_it_has_a_merchant_id
-    assert_equal 3, item.merchant_id 
+    assert_equal 3, item.merchant_id
   end
 
   def test_it_knows_when_it_was_created
@@ -56,4 +56,5 @@ class ItemTest<Minitest::Test
   def test_it_knows_when_it_was_updated
     assert item.updated_at == Date.parse("2012-03-27")
   end
+  #def test_your_business_intelligence
 end

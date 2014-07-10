@@ -4,7 +4,7 @@ module Finder
   end
 
   def random
-    self.items.shuffle.first
+    self.items.sample
   end
 
   def self.included(base)

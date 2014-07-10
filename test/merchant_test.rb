@@ -38,4 +38,6 @@ class MerchantTest<Minitest::Test
   def test_it_knows_when_it_was_updated
     assert Date.parse("2012-03-27"), merchant.updated_at
   end
+
+  #def test_your_business_intelligence
 end

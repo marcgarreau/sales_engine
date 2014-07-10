@@ -27,7 +27,7 @@ class CustomerTest<Minitest::Test
   end
 
   def test_it_knows_its_id
-    assert_equal 3, customer.id 
+    assert_equal 3, customer.id
   end
 
   def test_it_knows_its_first_name
@@ -45,4 +45,6 @@ class CustomerTest<Minitest::Test
   def test_it_knows_when_it_was_updated
     assert customer.updated_at == "2012-03-27"
   end
+
+  #def test_your_business_intelligence
 end

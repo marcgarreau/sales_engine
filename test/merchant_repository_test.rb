@@ -19,4 +19,6 @@ class MerchantRepositoryTest < Minitest::Test
     results = @repo.find_all_by_name("Williamson Group")
     assert_equal 2, results.count
   end
+
+  #def test_your_business_intelligence
 end
