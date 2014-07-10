@@ -48,8 +48,11 @@ class Customer
     invoices.map(&:quantity).reduce(0, :+)
   end
 
-  # def quantity_sold
-  #   invoices = invoices_with_successful_charge
-  #   invoices.map(&:quantity).reduce(0, :+)
-  # end
+  def revenue
+    invoices.map(&:amount).reduce(0, :+)
+  end
+
+  def pending_invoices
+    invoices.find_all(&:pending?)
+  end
 end

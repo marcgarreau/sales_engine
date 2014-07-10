@@ -22,6 +22,10 @@ class CustomerRepository
     all.sort_by { |customer| customer.quantity_bought }.reverse[0]
   end
 
+  def most_revenue
+    all.sort_by { |customer| customer.revenue }.reverse[0]
+  end
+
   def inspect
     "#<#{self.class} #{customers.size} rows>"
   end

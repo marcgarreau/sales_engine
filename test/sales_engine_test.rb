@@ -133,4 +133,18 @@ class SalesEngineTest < Minitest::Test
   def test_it_finds_customer_that_bought_most_items
     assert_equal 622, @engine.customer_repository.most_items.id
   end
+
+  def test_it_finds_customer_who_generated_most_revenue
+    assert_equal 601, engine.customer_repository.most_revenue.id
+  end
+
+  def test_it_returns_zero_for_pending_invoices_by_customer_with_none
+    customer = @engine.customer_repository.find_by_id(2)
+    assert_equal 0, customer.pending_invoices.count
+  end
+
+  def test_it_can_find_pending_invoices_by_customer
+    customer = @engine.customer_repository.find_by_id(307)
+    assert_equal 1, customer.pending_invoices.count
+  end
 end
