@@ -4,6 +4,7 @@ require 'minitest/pride'
 require './lib/sales_engine'
 
 class SalesEngineTest < Minitest::Test
+  attr_reader :engine
 
   def setup
     @engine = SalesEngine.new
@@ -127,5 +128,9 @@ class SalesEngineTest < Minitest::Test
     date = Date.parse "Tue, 20 Mar 2012"
     revenue = @engine.merchant_repository.revenue(date)
     assert_equal BigDecimal.new("2549722.91"), revenue
+  end
+
+  def test_it_finds_customer_that_bought_most_items
+    assert_equal 622, @engine.customer_repository.most_items.id
   end
 end

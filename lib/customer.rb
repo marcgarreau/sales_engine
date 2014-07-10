@@ -38,4 +38,18 @@ class Customer
     top_id = merchant_count.max_by {|_,count| count}.first
     @repository.engine.merchant_repository.find_by_id(top_id)
   end
+
+  def invoices_with_successful_charge
+    invoices.find_all(&:has_successful_charge?)
+  end
+
+  def quantity_bought
+    invoices = invoices_with_successful_charge
+    invoices.map(&:quantity).reduce(0, :+)
+  end
+
+  # def quantity_sold
+  #   invoices = invoices_with_successful_charge
+  #   invoices.map(&:quantity).reduce(0, :+)
+  # end
 end
