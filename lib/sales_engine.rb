@@ -26,15 +26,3 @@ class SalesEngine
     @transaction_repository   ||= TransactionRepository.new(self)
   end
 end
-
-#For testing the SalesEngine class:
-if __FILE__ == $0
-  @engine = SalesEngine.new
-  @engine.startup
-  merchant = @engine.merchant_repository.find_by_name "Kirlin, Jakubowski and Smitham"
-  invoice      = @engine.invoice_repository.find_by_merchant_id(id)
-  invoice_item = @engine.invoice_item_repository.find_by_id(invoice.id)
-  items        = @engine.item_repository.find_all_by_id(invoice_item.item_id)
-
-
-end

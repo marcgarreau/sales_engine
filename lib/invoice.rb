@@ -58,8 +58,8 @@ repository.engine.transaction_repository.find_all_by_invoice_id(id)
     transactions.none?(&:successful?)
   end
 
-  def charge(credit_card_data)
-repository.engine.transaction_repository.create_transaction(credit_card_data, id)
+  def charge(credit_card)
+    repository.engine.transaction_repository.create_transaction(credit_card, id)
   end
 
   protected
